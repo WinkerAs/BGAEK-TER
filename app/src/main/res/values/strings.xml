@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">BGAEK</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Настройки</string>
+
+    <string name="menu_main">Главное меню</string>
+    <string name="menu_tests">Тесты</string>
+    <string name="menu_data_info">Сборники информации</string>
+    <string name="menu_teachers">Учителя</string>
+    <string name="menu_info_app">Справочник</string>
+    <string name="menu_communicate">Обратная связь</string>
+</resources>

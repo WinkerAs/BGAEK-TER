@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.bgaek.ui.home.HomeFragment"
+        android:label="@string/menu_main"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.bgaek.ui.tests_list.TestsListFragment"
+        android:label="@string/menu_tests"
+        tools:layout="@layout/fragment_tests" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.bgaek.ui.base_info.SaveInformationFragment"
+        android:label="@string/menu_data_info"
+        tools:layout="@layout/fragment_base_info" />
+
+    <fragment
+        android:id="@+id/nav_tools"
+        android:name="com.example.bgaek.ui.teachers.TeachersFragment"
+        android:label="@string/menu_teachers"
+        tools:layout="@layout/fragment_tools" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.example.bgaek.ui.share.ShareFragment"
+        android:label="@string/menu_info_app"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.example.bgaek.ui.about_app.AboutAppFragment"
+        android:label="@string/menu_communicate"
+        tools:layout="@layout/fragment_support" />
+</navigation>
