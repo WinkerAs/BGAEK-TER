@@ -6,23 +6,45 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/main_menu"
-            android:title="@string/menu_main" />
+            android:icon="@drawable/theory"
+            android:title="@string/menu_theory" />
+
+        <item
+            android:id="@+id/nav_compendium"
+            android:icon="@drawable/compendium"
+            android:title="@string/menu_compendium" />
+
+        <item
+            android:id="@+id/nav_examples"
+            android:icon="@drawable/examples"
+            android:title="@string/menu_examples" />
+
+        <item
+            android:id="@+id/nav_trainers"
+            android:icon="@drawable/task_practice"
+            android:title="@string/menu_trainers" />
+
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/practice"
+            android:title="@string/menu_practice" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/tests"
             android:title="@string/menu_tests" />
+
+        <item
+            android:id="@+id/nav_control_work"
+            android:icon="@drawable/control_work"
+            android:title="@string/menu_control_work" />
+
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/data_info"
             android:title="@string/menu_data_info" />
-        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/teachers"
-            android:title="@string/menu_teachers" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Дополнительное">
         <menu>
             <item
                 android:id="@+id/nav_share"
@@ -32,6 +54,10 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_communicate" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/settings"
+                android:title="@string/menu_settings" />
         </menu>
     </item>
 

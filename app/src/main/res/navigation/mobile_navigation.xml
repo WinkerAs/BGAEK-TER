@@ -7,9 +7,33 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.bgaek.ui.home.HomeFragment"
-        android:label="@string/menu_main"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.example.bgaek.ui.theory.TheoryFragment"
+        android:label="@string/menu_theory"
+        tools:layout="@layout/fragment_theory" />
+
+    <fragment
+        android:id="@+id/nav_compendium"
+        android:name="com.example.bgaek.ui.compendium.СompendiumFragment"
+        android:label="@string/menu_compendium"
+        tools:layout="@layout/fragment_compendium" />
+
+    <fragment
+        android:id="@+id/nav_examples"
+        android:name="com.example.bgaek.ui.examples.ExamplesFragment"
+        android:label="@string/menu_examples"
+        tools:layout="@layout/fragment_examples" />
+
+    <fragment
+        android:id="@+id/nav_trainers"
+        android:name="com.example.bgaek.ui.trainers.TrainersFragment"
+        android:label="@string/menu_trainers"
+        tools:layout="@layout/fragment_trainers" />
+
+    <fragment
+        android:id="@+id/nav_tools"
+        android:name="com.example.bgaek.ui.practice.PracticeFragment"
+        android:label="@string/menu_practice"
+        tools:layout="@layout/fragment_practice" />
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -18,16 +42,16 @@
         tools:layout="@layout/fragment_tests" />
 
     <fragment
+        android:id="@+id/nav_control_work"
+        android:name="com.example.bgaek.ui.control_work.ControlWorkFragment"
+        android:label="@string/menu_control_work"
+        tools:layout="@layout/fragment_control_work" />
+
+    <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.bgaek.ui.base_info.SaveInformationFragment"
         android:label="@string/menu_data_info"
         tools:layout="@layout/fragment_base_info" />
-
-    <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.bgaek.ui.teachers.TeachersFragment"
-        android:label="@string/menu_teachers"
-        tools:layout="@layout/fragment_tools" />
 
     <fragment
         android:id="@+id/nav_share"
@@ -40,4 +64,9 @@
         android:name="com.example.bgaek.ui.about_app.AboutAppFragment"
         android:label="@string/menu_communicate"
         tools:layout="@layout/fragment_support" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.bgaek.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

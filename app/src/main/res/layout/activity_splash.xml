@@ -8,30 +8,39 @@
     android:id="@+id/activity_view">
 
     <LinearLayout
-        android:background="@color/colorBlueDark"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorBlueDark"
+        android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            app:srcCompat="@drawable/bgaek" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/probality" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginBottom="100dp"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <TextView
             android:id="@+id/textViewSplash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="БГАЭК"
-            android:textColor="@color/colorBlack"
-            android:textSize="36sp"
+            android:text="ТЕОРИЯ ВЕРОЯТНОСТЕЙ"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="24sp"
             android:textStyle="bold" />
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

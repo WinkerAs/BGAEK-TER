@@ -16,9 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NotConnectWifiActivity"
-            android:theme="@style/NoActionBar"></activity>
-        <activity android:name=".SettingsAppActivity" />
+        <activity android:name=".ChoiceCompendiumActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".PracticeActivity" />
+        <activity android:name=".RecyclerViewAdapterTest" />
+        <activity android:name=".RegistrationActivity" />
+        <activity
+            android:name=".NotConnectWifiActivity"
+            android:theme="@style/NoActionBar" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".MainActivity"

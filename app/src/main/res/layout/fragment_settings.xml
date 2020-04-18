@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SettingsAppActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Switch
-            android:gravity="left|center"
             android:id="@+id/switchStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left|center"
             android:text="Темная тема"
             android:textSize="18sp" />
 
@@ -33,11 +32,11 @@
             android:textSize="18sp" />
 
         <Button
-            android:layout_marginTop="20dp"
-            android:layout_gravity="bottom|end"
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="20dp"
             android:gravity="left|center"
             android:text="Выйти" />
 
