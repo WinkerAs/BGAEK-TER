@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,7 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
-import com.example.bgaek.ChoiceCompendiumActivity;
+import com.example.bgaek.ChoiceTopicActivity;
 import com.example.bgaek.R;
 import com.example.bgaek.RecyclerViewAdapterCustom;
 import com.example.bgaek.WorkDialog;
@@ -27,7 +25,7 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 
 public class СompendiumFragment extends Fragment implements RecyclerViewAdapterCustom.OnNoteListenner{
 
@@ -54,38 +52,67 @@ public class СompendiumFragment extends Fragment implements RecyclerViewAdapter
     }
 
     public void initRecyclerView() {
-
-        String[] masTitle = {"Элементы комбинаторики", "Случайные события", "Вероятность", "Теоремы сложения и умножения вероятностей", "Повторные испытания", "Случайные велечины", "Законы распределения СВ"};
-        String[] masIdAuthor = {"1", "2", "3", "4", "5", "6", "7"};
-
-        for (int i = 0; i < masTitle.length; i++) {
-                mAuthors.add(masTitle[i]);
-                mIdAuthors.add(masIdAuthor[i]);
-        }
-
-        Collections.reverse(mIdAuthors);
-        Collections.reverse(mAuthors);
-
-        RecyclerViewAdapterCustom adapterAuthors = new RecyclerViewAdapterCustom(getActivity(), mAuthors, new RecyclerViewAdapterCustom.OnNoteListenner() {
-            @Override
-            public void onNoteClick(int postition) {
-                Intent intent = new Intent(getActivity(), ChoiceCompendiumActivity.class);
-
-                startActivity(intent);
-            }
-        });
-        recyclerViewCompendium.setAdapter(adapterAuthors);
-        recyclerViewCompendium.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        LayoutAnimationController controller = AnimationUtils
-                .loadLayoutAnimation(getActivity(), R.anim.list_layout_controller);
-        recyclerViewCompendium.setLayoutAnimation(controller);
-        workDialog.hideDialog();
+        MyTask myTask = new MyTask();
+        myTask.execute();
     }
+
+    HashMap<Integer, String> hashMap;
 
     @Override
     public void onNoteClick(int postition) {
-        Log.d("onClick", ">" + postition);
+        Log.d("onClick",">"+postition);
     }
 
-}
+    private class MyTask extends AsyncTask<Void, Void, Void> {
+
+        String name, url;//Тут храним значение заголовка сайта
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            Document doc2 = null;//Здесь хранится будет разобранный html документ
+
+            try {
+
+                doc2 = Jsoup.connect("https://bgaek.000webhostapp.com/getDataCompendium.php").get();
+                name = doc2.select("b").text();
+                url = doc2.select("h2").text();
+
+            } catch (IOException e) {
+                //Если не получилось считать
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            String[] masTitle = name.split(";");
+            String[] masIdAuthor = url.split(";");
+            hashMap = new HashMap<Integer, String>();
+
+            for (int i = 0; i < masTitle.length; i++){
+                    mAuthors.add(masTitle[i]);
+                    mIdAuthors.add(masIdAuthor[i]);
+                    hashMap.put(i, masIdAuthor[i]);
+            }
+
+            RecyclerViewAdapterCustom adapterAuthors = new RecyclerViewAdapterCustom(getActivity(), mAuthors, new RecyclerViewAdapterCustom.OnNoteListenner() {
+                @Override
+                public void onNoteClick(int postition) {
+                    Intent intent = new Intent(getActivity(), ChoiceTopicActivity.class);
+                    intent.putExtra("URL_PDF", hashMap.get(postition));
+                    startActivity(intent);
+                }
+            });
+            recyclerViewCompendium.setAdapter(adapterAuthors);
+            recyclerViewCompendium.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+            LayoutAnimationController controller = AnimationUtils
+                    .loadLayoutAnimation(getActivity(), R.anim.list_layout_controller);
+            recyclerViewCompendium.setLayoutAnimation(controller);
+            workDialog.hideDialog();
+        }
+}}

@@ -10,27 +10,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.bgaek.ui.answer_practice.AnswerPracticeFragment;
 import com.example.bgaek.ui.main.SectionsPagerAdapter;
+import com.example.bgaek.ui.task_practice.TaskPracticeFragment;
 
 public class PracticeActivity extends AppCompatActivity {
+
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        viewPagerAdapter.AddFragment(new TaskPracticeFragment(), "Задания");
+        viewPagerAdapter.AddFragment(new AnswerPracticeFragment(), "Ответы");
+
+        viewPager.setAdapter(viewPagerAdapter);
+        tabs.setupWithViewPager(viewPager);
+        tabs.getTabAt(0).setIcon(R.drawable.question);
+        tabs.getTabAt(1).setIcon(R.drawable.answer);
     }
 }

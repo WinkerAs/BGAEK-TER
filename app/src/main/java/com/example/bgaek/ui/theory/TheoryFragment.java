@@ -1,112 +1,123 @@
 package com.example.bgaek.ui.theory;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
-import android.widget.SimpleExpandableListAdapter;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ExpandableListView;
-import android.widget.SimpleExpandableListAdapter;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
+import com.example.bgaek.ChoiceTopicActivity;
 import com.example.bgaek.R;
+import com.example.bgaek.RecyclerViewAdapterCustom;
+import com.example.bgaek.WorkDialog;
 
-public class TheoryFragment extends Fragment {
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
-    private String[] mGroupsArray = new String[] { "Зима", "Весна", "Лето", "Осень" };
+public class TheoryFragment extends Fragment implements RecyclerViewAdapterCustom.OnNoteListenner{
 
-    private String[] mWinterMonthsArray = new String[] { "Декабрь", "Январь", "Февраль" };
-    private String[] mSpringMonthsArray = new String[] { "Март", "Апрель", "Май" };
-    private String[] mSummerMonthsArray = new String[] { "Июнь", "Июль", "Август" };
-    private String[] mAutumnMonthsArray = new String[] { "Сентябрь", "Октябрь", "Ноябрь" };
+    RecyclerView recyclerViewTheory;
+    ArrayList<String> mAuthors = new ArrayList<>();
+    ArrayList<String> mIdAuthors = new ArrayList<>();
+
+    ProgressDialog progressDialog;
+    WorkDialog workDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_theory, container, false);
 
-        Map<String, String> map;
-        // коллекция для групп
-        ArrayList<Map<String, String>> groupDataList = new ArrayList<>();
-        // заполняем коллекцию групп из массива с названиями групп
+        recyclerViewTheory = root.findViewById(R.id.recyclerViewTheory);
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+        workDialog = new WorkDialog(progressDialog);
+        workDialog.showDialog();
 
-        for (String group : mGroupsArray) {
-            // заполняем список атрибутов для каждой группы
-            map = new HashMap<>();
-            map.put("groupName", group); // время года
-            groupDataList.add(map);
-        }
-
-        // список атрибутов групп для чтения
-        String groupFrom[] = new String[] { "groupName" };
-        // список ID view-элементов, в которые будет помещены атрибуты групп
-        int groupTo[] = new int[] { android.R.id.text1 };
-
-        // создаем общую коллекцию для коллекций элементов
-        ArrayList<ArrayList<Map<String, String>>> сhildDataList = new ArrayList<>();
-
-        // в итоге получится сhildDataList = ArrayList<сhildDataItemList>
-
-        // создаем коллекцию элементов для первой группы
-        ArrayList<Map<String, String>> сhildDataItemList = new ArrayList<>();
-        // заполняем список атрибутов для каждого элемента
-        for (String month : mWinterMonthsArray) {
-            map = new HashMap<>();
-            map.put("monthName", month); // название месяца
-            сhildDataItemList.add(map);
-        }
-        // добавляем в коллекцию коллекций
-        сhildDataList.add(сhildDataItemList);
-
-        // создаем коллекцию элементов для второй группы
-        сhildDataItemList = new ArrayList<>();
-        for (String month : mSpringMonthsArray) {
-            map = new HashMap<>();
-            map.put("monthName", month);
-            сhildDataItemList.add(map);
-        }
-        сhildDataList.add(сhildDataItemList);
-
-        // создаем коллекцию элементов для третьей группы
-        сhildDataItemList = new ArrayList<>();
-        for (String month : mSummerMonthsArray) {
-            map = new HashMap<>();
-            map.put("monthName", month);
-            сhildDataItemList.add(map);
-        }
-        сhildDataList.add(сhildDataItemList);
-
-        // создаем коллекцию элементов для четвертой группы
-        сhildDataItemList = new ArrayList<>();
-        for (String month : mAutumnMonthsArray) {
-            map = new HashMap<>();
-            map.put("monthName", month);
-            сhildDataItemList.add(map);
-        }
-        сhildDataList.add(сhildDataItemList);
-
-        // список атрибутов элементов для чтения
-        String childFrom[] = new String[] { "monthName" };
-        // список ID view-элементов, в которые будет помещены атрибуты
-        // элементов
-        int childTo[] = new int[] { android.R.id.text1 };
-
-        SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(
-                getActivity(), groupDataList,
-                android.R.layout.simple_expandable_list_item_1, groupFrom,
-                groupTo, сhildDataList, android.R.layout.simple_list_item_1,
-                childFrom, childTo);
-
-        ExpandableListView expandableListView = (ExpandableListView)root.findViewById(R.id.expListView);
-        expandableListView.setAdapter(adapter);
+        initRecyclerView();
 
         return root;
+    }
+
+    public void initRecyclerView() {
+        MyTask myTask = new MyTask();
+        myTask.execute();
+    }
+
+
+    HashMap<Integer, String> hashMap;
+
+    @Override
+    public void onNoteClick(int postition) {
+        Log.d("onClick",">"+postition);
+    }
+
+    private class MyTask extends AsyncTask<Void, Void, Void> {
+
+        String name, url;//Тут храним значение заголовка сайта
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            Document doc2 = null;//Здесь хранится будет разобранный html документ
+
+            try {
+
+                doc2 = Jsoup.connect("https://bgaek.000webhostapp.com/getDataTheory.php").get();
+                name = doc2.select("b").text();
+                url = doc2.select("h2").text();
+
+            } catch (IOException e) {
+                //Если не получилось считать
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            String[] masTitle = name.split(";");
+            String[] masIdAuthor = url.split(";");
+            hashMap = new HashMap<Integer, String>();
+
+            for (int i = 0; i < masTitle.length; i++){
+                    mAuthors.add(masTitle[i]);
+                    mIdAuthors.add(masIdAuthor[i]);
+                    hashMap.put(i, masIdAuthor[i]);
+            }
+
+            RecyclerViewAdapterCustom adapterAuthors = new RecyclerViewAdapterCustom(getActivity(), mAuthors, new RecyclerViewAdapterCustom.OnNoteListenner() {
+                @Override
+                public void onNoteClick(int postition) {
+                    Intent intent = new Intent(getActivity(), ChoiceTopicActivity.class);
+
+                    intent.putExtra("URL_PDF", hashMap.get(postition));
+
+                    startActivity(intent);
+                }
+            });
+            recyclerViewTheory.setAdapter(adapterAuthors);
+            recyclerViewTheory.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+            LayoutAnimationController controller = AnimationUtils
+                    .loadLayoutAnimation(getActivity(), R.anim.list_layout_controller);
+            recyclerViewTheory.setLayoutAnimation(controller);
+            workDialog.hideDialog();
+        }
     }
 }

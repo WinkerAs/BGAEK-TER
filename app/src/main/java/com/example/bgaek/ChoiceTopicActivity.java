@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.webkit.WebView;
 import android.widget.Toolbar;
 
 import com.github.barteksc.pdfviewer.PDFView;
@@ -16,7 +15,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ChoiceCompendiumActivity extends AppCompatActivity {
+public class ChoiceTopicActivity extends AppCompatActivity {
 
     PDFView pdfView;
     String urlPDF;
@@ -25,9 +24,7 @@ public class ChoiceCompendiumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choice_compendium);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //getWindow().setBackgroundDrawableResource(R.drawable.books_menu);
+        setContentView(R.layout.activity_choice_topic);
         toolbar =  findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

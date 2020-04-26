@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
@@ -123,7 +122,7 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
 
             for (int i = 0; i < masTitle.length; i++){
                     mTitle.add(masTitle[i]);
-                    mImages.add("https://im0-tub-by.yandex.net/i?id=b9427bbc7b833840385f7b1ab57905d3-l&n=13");
+                    mImages.add("https://stavka-bk.ru/wp-content/uploads/2020/03/teoriya-stavok.png");
                     mIdPractice.add(masIdCategories[i]);
             }
 

@@ -18,6 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -47,10 +50,17 @@ public class SplashActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 123;
     int SPLASH_TIME = 3000;
 
+    ImageView imageViewSplash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        imageViewSplash = findViewById(R.id.imageViewSplash);
+        Animation animation = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate);
+        imageViewSplash.startAnimation(animation);
 
         File fileUser = new File(getFilesDir() +"/"+FILE_NAME);
         File fileCheck = new File(getFilesDir() +"/"+ FILE_CHECK);

@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewSplash"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:srcCompat="@drawable/probality" />
