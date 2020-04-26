@@ -1,9 +1,12 @@
 package com.example.bgaek;
 
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.Toolbar;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
@@ -17,12 +20,19 @@ public class ChoiceCompendiumActivity extends AppCompatActivity {
 
     PDFView pdfView;
     String urlPDF;
+    Toolbar toolbar;
+    String receivedUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice_compendium);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //getWindow().setBackgroundDrawableResource(R.drawable.books_menu);
+        toolbar =  findViewById(R.id.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        urlPDF = "https://bgaek.000webhostapp.com/elementy_kombinatoriki.pdf";
+        urlPDF = getIntent().getExtras().getString("URL_PDF");
 
         pdfView = findViewById(R.id.pdfView);
         new RetrievePDFStream().execute(urlPDF);
@@ -50,5 +60,14 @@ public class ChoiceCompendiumActivity extends AppCompatActivity {
         protected void onPostExecute(InputStream inputStream) {
             pdfView.fromStream(inputStream).load();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
