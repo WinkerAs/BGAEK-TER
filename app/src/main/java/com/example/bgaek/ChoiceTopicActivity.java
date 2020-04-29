@@ -32,31 +32,7 @@ public class ChoiceTopicActivity extends AppCompatActivity {
         urlPDF = getIntent().getExtras().getString("URL_PDF");
 
         pdfView = findViewById(R.id.pdfView);
-        new RetrievePDFStream().execute(urlPDF);
-    }
-
-    class RetrievePDFStream extends AsyncTask<String, Void, InputStream>
-    {
-
-        @Override
-        protected InputStream doInBackground(String... strings) {
-            InputStream inputStream = null;
-            try {
-                URL url = new URL(strings[0]);
-                HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-                if (urlConnection.getResponseCode() == 200){
-                    inputStream = new BufferedInputStream(urlConnection.getInputStream());
-                }
-            }catch (IOException e){
-                return null;
-            }
-            return inputStream;
-        }
-
-        @Override
-        protected void onPostExecute(InputStream inputStream) {
-            pdfView.fromStream(inputStream).load();
-        }
+        new RetrievePDFStream(pdfView).execute(urlPDF);
     }
 
     @Override
@@ -67,4 +43,6 @@ public class ChoiceTopicActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
