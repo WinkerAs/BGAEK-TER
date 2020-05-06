@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import com.example.bgaek.R;
 import com.example.bgaek.RecyclerViewAdapterTest;
 import com.example.bgaek.TestActivity;
+import com.example.bgaek.URLsConnection;
 import com.example.bgaek.WorkDialog;
 import com.example.bgaek.ui.notConnect.FragmentNotConnect;
 
@@ -43,14 +44,16 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
     String idStudentText;
     ProgressDialog progressDialog;
     WorkDialog workDialog;
+    String URL;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_tests, container, false);
 
-        //        idStudentText = getActivity().getIntent().getExtras().getString("id_student");
-        idStudentText = "2";
+        idStudentText = getActivity().getIntent().getExtras().getString("id_student");
+        URL = "https://bgaek.000webhostapp.com/getTest.php";
+
         ConnectivityManager connManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobileNetwork = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);

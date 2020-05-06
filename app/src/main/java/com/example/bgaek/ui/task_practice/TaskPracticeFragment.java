@@ -28,10 +28,7 @@ public class TaskPracticeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_task_practice, container, false);
         setRetainInstance(true);
-
-        //urlPDF = getActivity().getIntent().getExtras().getString("URL_PDF");
-        urlPDF = "https://bgaek.000webhostapp.com/konspekt/Elementy_kombinatoriki.pdf";
-
+        urlPDF = getActivity().getIntent().getExtras().getString("urlPractice");
         pdfView = root.findViewById(R.id.pdfTask);
         new RetrievePDFStream(pdfView).execute(urlPDF);
 

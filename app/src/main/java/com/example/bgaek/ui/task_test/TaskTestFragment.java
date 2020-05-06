@@ -1,19 +1,15 @@
-package com.example.bgaek.ui.answer_practice;
+package com.example.bgaek.ui.task_test;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.bgaek.AppSingleton;
-import com.example.bgaek.LoginActivity;
-import com.example.bgaek.PracticeActivity;
 import com.example.bgaek.R;
-import com.example.bgaek.RecyclerViewAdapterTest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,53 +29,57 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
-public class AnswerPracticeFragment extends Fragment {
-    String urlAnswer = "https://bgaek.000webhostapp.com/getDataAnswerPractice.php";
-    String URL_FOR_Result = "https://bgaek.000webhostapp.com/addResultPractice.php";
-    String studentVariant, idPractice, idStudent;
-    Button buttonNextAnswer;
+public class TaskTestFragment extends Fragment {
+    String urlAnswer = "https://bgaek.000webhostapp.com/getDataTest.php";
+    String URL_FOR_Result = "https://bgaek.000webhostapp.com/addResultTest.php";
+    String idTest, idStudent;
+    Button buttonNextTask;
     EditText editTextAnswer;
-    TextView textView12;
+    TextView textViewTaskTest;
     int count = 0;
+    RadioButton radioButtonAnswer, radioButtonAnswer2, radioButtonAnswer3, radioButtonAnswer4;
     ArrayList<String> listAnswer = new ArrayList<String>();
     ArrayList<String> listPractice = new ArrayList<String>();
     ArrayList<String> listVariant = new ArrayList<String>();
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_answer_practice, container, false);
+                             final ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_task_test, container, false);
         //setRetainInstance(true);
-        buttonNextAnswer = (Button)root.findViewById(R.id.buttonNextAnswer);
-        editTextAnswer = (EditText)root.findViewById(R.id.editTextAnswer);
-        textView12 = (TextView) root.findViewById(R.id.textViewQ);
+        buttonNextTask = (Button)root.findViewById(R.id.buttonNextTask);
+        textViewTaskTest = (TextView) root.findViewById(R.id.textViewTaskTest);
+        radioButtonAnswer = root.findViewById(R.id.radioButtonAnswer);
+        radioButtonAnswer2 = root.findViewById(R.id.radioButtonAnswer2);
+        radioButtonAnswer3 = root.findViewById(R.id.radioButtonAnswer3);
+        radioButtonAnswer4 = root.findViewById(R.id.radioButtonAnswer4);
 
         idStudent = getActivity().getIntent().getExtras().getString("id_student");
-
-        studentVariant = getActivity().getIntent().getExtras().getString("variant");
-        idPractice = "1";
+        idTest = "1";
 
         MyTask myTask = new MyTask();
         myTask.execute();
 
-        buttonNextAnswer.setOnClickListener(new View.OnClickListener() {
+        textViewTaskTest.setText(masNameTask[count]);
+        radioButtonAnswer.setText(masAnswer[count]);
+        radioButtonAnswer2.setText(masAnswer2[count]);
+        radioButtonAnswer3.setText(masAnswer3[count]);
+        radioButtonAnswer4.setText(masAnswer4[count]);
+
+        buttonNextTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (count < masAnswer.length-1){
-                    if (masAnswer[count].equals(editTextAnswer.getText().toString()))
-                        addAnswer(idStudent, idPractice, masTask[count], "1");
-                    count++;
-                }else
-                    getActivity().finish();
+                count++;
             }
         });
         return root;
     }
 
-    String[] masAnswer, masVariant, masPractice, masTask;
+    String[] masAnswer, masAnswer2, masAnswer3, masAnswer4, masTest, masNameTask;
 
     class MyTask extends AsyncTask<Void, Void, Void> {
 
-        String practice, answer, variant, task;//Тут храним значение заголовка сайта
+        String test, name_task, answer, answer2, answer3, answer4;//Тут храним значение заголовка сайта
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -93,10 +90,12 @@ public class AnswerPracticeFragment extends Fragment {
                 //Считываем заглавную страницу http://harrix.org
                 doc = Jsoup.connect(urlAnswer).get();
 
-                answer = doc.select("b").text();
-                variant = doc.select("h1").text();
-                practice = doc.select("h2").text();
-                task = doc.select("h3").text();
+                test = doc.select("b").text();
+                name_task = doc.select("h1").text();
+                answer = doc.select("h2").text();
+                answer2 = doc.select("h3").text();
+                answer3 = doc.select("h4").text();
+                answer4 = doc.select("h5").text();
 
 
             } catch (IOException e) {
@@ -111,14 +110,16 @@ public class AnswerPracticeFragment extends Fragment {
             super.onPostExecute(result);
 
             masAnswer = answer.split(";");
-            masVariant = variant.split(";");
-            masPractice = practice.split(";");
-            masTask = task.split(";");
+            masAnswer2 = answer2.split(";");
+            masAnswer3 = answer3.split(";");
+            masAnswer4 = answer4.split(";");
+            masTest = test.split(";");
+            masNameTask = name_task.split(";");
 
         }
     }
 
-    private void addAnswer(final String id_student, final String id_practice, final String id_answer, final String mark) {
+    private void addResultTest(final String id_student, final String id_test, final String mark) {
         // Tag used to cancel the request
         String cancel_req_tag = "register";
 
@@ -158,8 +159,7 @@ public class AnswerPracticeFragment extends Fragment {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_student", id_student);
-                params.put("id_practice", id_practice);
-                params.put("id_answer", id_answer);
+                params.put("id_test", id_test);
                 params.put("mark", mark);
                 return params;
             }

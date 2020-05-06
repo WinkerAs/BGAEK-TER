@@ -13,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
@@ -43,11 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                /*loginUser(loginInputEmail.getText().toString(),
-                        loginInputPassword.getText().toString());*/
+                loginUser(loginInputEmail.getText().toString(),
+                        loginInputPassword.getText().toString());
             }
         });
 
@@ -78,12 +76,14 @@ public class LoginActivity extends AppCompatActivity {
                     boolean error = jObj.getBoolean("error");
 
                     if (!error) {
-                        String user = jObj.getJSONObject("user").getString("name");
+                        String id_student = jObj.getJSONObject("user").getString("id_student");
+                        String variant = jObj.getJSONObject("user").getString("variant");
                         // Launch User activity
                         Intent intent = new Intent(
                                 LoginActivity.this,
                                 MainActivity.class);
-                        intent.putExtra("username", user);
+                        intent.putExtra("id_student", id_student);
+                        intent.putExtra("variant", variant);
                         startActivity(intent);
                         finish();
                     } else {
@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting params to login url
                 Map<String, String> params = new HashMap<>();
-                params.put("email", email);
+                params.put("login", email);
                 params.put("password", password);
                 return params;
             }

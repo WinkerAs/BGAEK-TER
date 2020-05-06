@@ -23,6 +23,7 @@ import com.example.bgaek.PracticeActivity;
 import com.example.bgaek.R;
 import com.example.bgaek.RecyclerViewAdapterTest;
 import com.example.bgaek.WorkDialog;
+import com.example.bgaek.URLsConnection;
 import com.example.bgaek.ui.notConnect.FragmentNotConnect;
 
 import org.jsoup.Jsoup;
@@ -40,15 +41,16 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
     ArrayList<String> mIdPractice = new ArrayList<>();
     ArrayList<String> mImages = new ArrayList<>();
     HashMap<Integer, String> hashMap = new HashMap<>();
-    String idStudentText;
+    String idStudentText, variant;
     ProgressDialog progressDialog;
     WorkDialog workDialog;
+    private static final String url = "https://bgaek.000webhostapp.com/getPractice.php";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_practice, container, false);
 
-//        idStudentText = getActivity().getIntent().getExtras().getString("id_student");
-        idStudentText = "2";
+        idStudentText = getActivity().getIntent().getExtras().getString("id_student");
+        idStudentText = getActivity().getIntent().getExtras().getString("variant");
         ConnectivityManager connManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobileNetwork = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -89,7 +91,7 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
 
     class MyTask extends AsyncTask<Void, Void, Void> {
 
-        String title,idPractice;//Тут храним значение заголовка сайта
+        String title,urlPractice;//Тут храним значение заголовка сайта
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -98,10 +100,10 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
 
             try {
                 //Считываем заглавную страницу http://harrix.org
-                doc = Jsoup.connect("https://versewin.000webhostapp.com/getCategories.php").get();
+                doc = Jsoup.connect(url).get();
 
                 title = doc.select("b").text();
-                idPractice = doc.select("li").text();
+                urlPractice = doc.select("h2").text();
 
             } catch (IOException e) {
                 //Если не получилось считать
@@ -114,24 +116,22 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            //String[] masTitle = title.split(";");
-            //String[] masIdCategories = idPractice.split(";");
-
-            String[] masTitle = {"Практика 1", "Практика 2", "Практика 3", "Практика 4"};
-            String[] masIdCategories = {"1", "2", "3", "4"};
+            String[] masTitle = title.split(";");
+            String[] masUrlPractice = urlPractice.split(";");
 
             for (int i = 0; i < masTitle.length; i++){
                     mTitle.add(masTitle[i]);
                     mImages.add("https://stavka-bk.ru/wp-content/uploads/2020/03/teoriya-stavok.png");
-                    mIdPractice.add(masIdCategories[i]);
+                    mIdPractice.add(masUrlPractice[i]);
             }
 
             RecyclerViewAdapterTest adapterCategories = new RecyclerViewAdapterTest(getActivity(), mTitle, mImages, new RecyclerViewAdapterTest.OnNoteListenner() {
                 @Override
                 public void onNoteClick(int postition) {
                     Intent intent = new Intent(getActivity(), PracticeActivity.class);
-                    intent.putExtra("idPractice", mIdPractice.get(postition));
+                    intent.putExtra("urlPractice", mIdPractice.get(postition));
                     intent.putExtra("id_student", idStudentText);
+                    intent.putExtra("variant", variant);
                     startActivity(intent);
                 }
             });
