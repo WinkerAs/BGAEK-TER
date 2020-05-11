@@ -16,7 +16,7 @@
 
         <fragment
             android:id="@+id/fragment"
-            android:name="com.example.bgaek.ui.greeting_window.GreetingFragment"
+            android:name="com.example.bgaek.ui.task_test.TaskTestFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />

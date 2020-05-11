@@ -90,14 +90,12 @@ public class AnswerPracticeFragment extends Fragment {
             Document doc = null;//Здесь хранится будет разобранный html документ
 
             try {
-                //Считываем заглавную страницу http://harrix.org
                 doc = Jsoup.connect(urlAnswer).get();
 
                 answer = doc.select("b").text();
                 variant = doc.select("h1").text();
                 practice = doc.select("h2").text();
                 task = doc.select("h3").text();
-
 
             } catch (IOException e) {
                 //Если не получилось считать

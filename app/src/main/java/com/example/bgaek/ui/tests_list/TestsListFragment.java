@@ -94,7 +94,7 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
 
     class MyTask extends AsyncTask<Void, Void, Void> {
 
-        String title,idPractice;//Тут храним значение заголовка сайта
+        String title, idTest;//Тут храним значение заголовка сайта
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -102,11 +102,10 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
             Document doc = null;//Здесь хранится будет разобранный html документ
 
             try {
-                //Считываем заглавную страницу http://harrix.org
-                doc = Jsoup.connect("https://versewin.000webhostapp.com/getCategories.php").get();
+                doc = Jsoup.connect(URL).get();
 
                 title = doc.select("b").text();
-                idPractice = doc.select("li").text();
+                idTest = doc.select("h2").text();
 
             } catch (IOException e) {
                 //Если не получилось считать
@@ -119,16 +118,13 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            //String[] masTitle = title.split(";");
-            //String[] masIdCategories = idPractice.split(";");
-
-            String[] masTitle = {"Тест 1", "Тест 2", "Тест 3", "Тест 4"};
-            String[] masIdCategories = {"1", "2", "3", "4"};
+            String[] masTitle = title.split(";");
+            String[] masTest = idTest.split(";");
 
             for (int i = 0; i < masTitle.length; i++){
                 mTitle.add(masTitle[i]);
+                mIdTest.add(masTest[i]);
                 mImages.add("https://stavka-bk.ru/wp-content/uploads/2020/03/teoriya-stavok.png");
-                mIdTest.add(masIdCategories[i]);
             }
 
             RecyclerViewAdapterTest adapterCategories = new RecyclerViewAdapterTest(getActivity(), mTitle, mImages, new RecyclerViewAdapterTest.OnNoteListenner() {

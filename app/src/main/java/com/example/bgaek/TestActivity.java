@@ -19,6 +19,8 @@ public class TestActivity extends AppCompatActivity {
         toolbar =  findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

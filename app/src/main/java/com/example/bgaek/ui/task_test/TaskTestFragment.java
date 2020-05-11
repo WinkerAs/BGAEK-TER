@@ -34,19 +34,17 @@ import java.util.Random;
 public class TaskTestFragment extends Fragment {
     String urlAnswer = "https://bgaek.000webhostapp.com/getDataTest.php";
     String URL_FOR_Result = "https://bgaek.000webhostapp.com/addResultTest.php";
-    String idTest, idStudent;
+    String idTest, idStudent, answer;
     Button buttonNextTask;
     EditText editTextAnswer;
     TextView textViewTaskTest;
     int count = 0;
     RadioButton radioButtonAnswer, radioButtonAnswer2, radioButtonAnswer3, radioButtonAnswer4;
-    ArrayList<String> listAnswer = new ArrayList<String>();
-    ArrayList<String> listPractice = new ArrayList<String>();
-    ArrayList<String> listVariant = new ArrayList<String>();
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              final ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_task_test, container, false);
-        //setRetainInstance(true);
+        setRetainInstance(true);
         buttonNextTask = (Button)root.findViewById(R.id.buttonNextTask);
         textViewTaskTest = (TextView) root.findViewById(R.id.textViewTaskTest);
         radioButtonAnswer = root.findViewById(R.id.radioButtonAnswer);
@@ -55,27 +53,45 @@ public class TaskTestFragment extends Fragment {
         radioButtonAnswer4 = root.findViewById(R.id.radioButtonAnswer4);
 
         idStudent = getActivity().getIntent().getExtras().getString("id_student");
-        idTest = "1";
+        idTest = getActivity().getIntent().getExtras().getString("idTest");
 
         MyTask myTask = new MyTask();
         myTask.execute();
 
-        textViewTaskTest.setText(masNameTask[count]);
-        radioButtonAnswer.setText(masAnswer[count]);
-        radioButtonAnswer2.setText(masAnswer2[count]);
-        radioButtonAnswer3.setText(masAnswer3[count]);
-        radioButtonAnswer4.setText(masAnswer4[count]);
-
         buttonNextTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                answer = listAnswer.get(count);
+                if(radioButtonAnswer.isChecked()){
+                    if (radioButtonAnswer.getText().equals(answer)){
+                        addMark();
+                    }
+                }else if(radioButtonAnswer2.isChecked()){
+                    if (radioButtonAnswer2.getText().equals(answer)){
+                        addMark();
+                    }
+                }else if(radioButtonAnswer3.isChecked()){
+                    if (radioButtonAnswer3.getText().equals(answer)){
+                        addMark();
+                    }
+                }else if(radioButtonAnswer4.isChecked()){
+                    if (radioButtonAnswer4.getText().equals(answer)){
+                        addMark();
+                    }
+                }
                 count++;
+                if(count < listAnswer.size()){
+                    RandomAnswer();
+                }else
+                    getActivity().finish();
+                //clearFocus();
             }
         });
         return root;
     }
 
     String[] masAnswer, masAnswer2, masAnswer3, masAnswer4, masTest, masNameTask;
+    ArrayList<String> listAnswer, listAnswer2, listAnswer3, listAnswer4, listNameTask;
 
     class MyTask extends AsyncTask<Void, Void, Void> {
 
@@ -109,6 +125,12 @@ public class TaskTestFragment extends Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
+            listNameTask = new ArrayList<>();
+            listAnswer = new ArrayList<>();
+            listAnswer2 = new ArrayList<>();
+            listAnswer3 = new ArrayList<>();
+            listAnswer4 = new ArrayList<>();
+
             masAnswer = answer.split(";");
             masAnswer2 = answer2.split(";");
             masAnswer3 = answer3.split(";");
@@ -116,6 +138,16 @@ public class TaskTestFragment extends Fragment {
             masTest = test.split(";");
             masNameTask = name_task.split(";");
 
+            for (int i = 0; i < masTest.length; i++){
+            if (masTest[i].equals(idTest)){
+                listAnswer.add(masAnswer[i]);
+                listAnswer2.add(masAnswer2[i]);
+                listAnswer3.add(masAnswer3[i]);
+                listAnswer4.add(masAnswer4[i]);
+                listNameTask.add(masNameTask[i]);
+            }}
+            textViewTaskTest.setText(listAnswer.get(count));
+            RandomAnswer();
         }
     }
 
@@ -166,5 +198,42 @@ public class TaskTestFragment extends Fragment {
         };
         // Adding request to request queue
         AppSingleton.getInstance(getActivity()).addToRequestQueue(strReq, cancel_req_tag);
+    }
+
+    public void addMark(){
+        addResultTest(idStudent, idTest, "1");
+    }
+
+    public void clearFocus(){
+        radioButtonAnswer.setChecked(false);
+        radioButtonAnswer2.setChecked(false);
+        radioButtonAnswer3.setChecked(false);
+        radioButtonAnswer4.setChecked(false);
+    }
+
+    public void RandomAnswer(){
+        Random random = new Random();
+        int xRand = random.nextInt(4) + 1;
+        if (xRand == 1){
+            radioButtonAnswer.setText(listAnswer3.get(count));
+            radioButtonAnswer2.setText(listAnswer2.get(count));
+            radioButtonAnswer3.setText(listAnswer.get(count));
+            radioButtonAnswer4.setText(listAnswer4.get(count));
+        }else if(xRand == 2){
+            radioButtonAnswer.setText(listAnswer.get(count));
+            radioButtonAnswer2.setText(listAnswer3.get(count));
+            radioButtonAnswer3.setText(listAnswer2.get(count));
+            radioButtonAnswer4.setText(listAnswer4.get(count));
+        }else if(xRand == 3){
+            radioButtonAnswer.setText(listAnswer4.get(count));
+            radioButtonAnswer2.setText(listAnswer2.get(count));
+            radioButtonAnswer3.setText(listAnswer.get(count));
+            radioButtonAnswer4.setText(listAnswer3.get(count));
+        }else if(xRand == 4){
+            radioButtonAnswer.setText(listAnswer3.get(count));
+            radioButtonAnswer2.setText(listAnswer4.get(count));
+            radioButtonAnswer3.setText(listAnswer2.get(count));
+            radioButtonAnswer4.setText(listAnswer.get(count));
+        }
     }
 }
