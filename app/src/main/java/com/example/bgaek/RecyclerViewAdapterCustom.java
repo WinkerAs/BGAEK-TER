@@ -17,7 +17,6 @@ public class RecyclerViewAdapterCustom extends RecyclerView.Adapter<RecyclerView
     private Context mContext;
     OnNoteListenner onNoteListenner;
 
-
     public RecyclerViewAdapterCustom(Context mContext, ArrayList<String> mAuthor, OnNoteListenner onNoteListenner) {
         this.mAuthor = mAuthor;
         this.mContext = mContext;

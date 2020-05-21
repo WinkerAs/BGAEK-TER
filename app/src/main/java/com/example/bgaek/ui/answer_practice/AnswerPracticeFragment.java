@@ -43,7 +43,7 @@ public class AnswerPracticeFragment extends Fragment {
     String studentVariant, idPractice, idStudent;
     Button buttonNextAnswer;
     EditText editTextAnswer;
-    TextView textView12;
+    TextView textView12, textViewVariant, textViewQuestion;
     int count = 0;
     ArrayList<String> listAnswer = new ArrayList<String>();
     ArrayList<String> listPractice = new ArrayList<String>();
@@ -55,10 +55,13 @@ public class AnswerPracticeFragment extends Fragment {
         buttonNextAnswer = (Button)root.findViewById(R.id.buttonNextAnswer);
         editTextAnswer = (EditText)root.findViewById(R.id.editTextAnswer);
         textView12 = (TextView) root.findViewById(R.id.textViewQ);
+        textViewQuestion = root.findViewById(R.id.textViewQuestion);
+        textViewVariant = root.findViewById(R.id.textViewVariant);
 
         idStudent = getActivity().getIntent().getExtras().getString("id_student");
 
         studentVariant = getActivity().getIntent().getExtras().getString("variant");
+        textViewVariant.setText(studentVariant);
         idPractice = "1";
 
         MyTask myTask = new MyTask();
@@ -71,6 +74,7 @@ public class AnswerPracticeFragment extends Fragment {
                     if (masAnswer[count].equals(editTextAnswer.getText().toString()))
                         addAnswer(idStudent, idPractice, masTask[count], "1");
                     count++;
+                    textViewQuestion.setText(masName[count]);
                 }else
                     getActivity().finish();
             }
@@ -78,11 +82,11 @@ public class AnswerPracticeFragment extends Fragment {
         return root;
     }
 
-    String[] masAnswer, masVariant, masPractice, masTask;
+    String[] masAnswer, masVariant, masPractice, masTask, masName;
 
     class MyTask extends AsyncTask<Void, Void, Void> {
 
-        String practice, answer, variant, task;//Тут храним значение заголовка сайта
+        String practice, answer, variant, task, name;//Тут храним значение заголовка сайта
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -96,6 +100,7 @@ public class AnswerPracticeFragment extends Fragment {
                 variant = doc.select("h1").text();
                 practice = doc.select("h2").text();
                 task = doc.select("h3").text();
+                name = doc.select("h4").text();
 
             } catch (IOException e) {
                 //Если не получилось считать
@@ -112,7 +117,8 @@ public class AnswerPracticeFragment extends Fragment {
             masVariant = variant.split(";");
             masPractice = practice.split(";");
             masTask = task.split(";");
-
+            masName = name.split(";");
+            textViewQuestion.setText(masName[0]);
         }
     }
 

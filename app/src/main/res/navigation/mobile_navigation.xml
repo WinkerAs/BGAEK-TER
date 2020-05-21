@@ -55,9 +55,9 @@
 
     <fragment
         android:id="@+id/nav_share"
-        android:name="com.example.bgaek.ui.share.ShareFragment"
+        android:name="com.example.bgaek.ui.formuly.FormulyFragment"
         android:label="@string/menu_info_app"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_formuly" />
 
     <fragment
         android:id="@+id/nav_send"

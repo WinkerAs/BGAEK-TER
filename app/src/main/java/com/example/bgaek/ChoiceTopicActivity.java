@@ -20,7 +20,7 @@ public class ChoiceTopicActivity extends AppCompatActivity {
     PDFView pdfView;
     String urlPDF;
     Toolbar toolbar;
-    String receivedUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,4 @@ public class ChoiceTopicActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

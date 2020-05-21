@@ -145,6 +145,4 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
             workDialog.hideDialog();
         }
     }
-
-
 }
