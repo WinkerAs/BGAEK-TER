@@ -61,7 +61,7 @@ public class AnswerPracticeFragment extends Fragment {
         idStudent = getActivity().getIntent().getExtras().getString("id_student");
 
         studentVariant = getActivity().getIntent().getExtras().getString("variant");
-        textViewVariant.setText(studentVariant);
+        textViewVariant.setText("Ваш вариант: "+studentVariant);
         idPractice = "1";
 
         MyTask myTask = new MyTask();

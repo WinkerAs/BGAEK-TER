@@ -50,7 +50,7 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
         View root = inflater.inflate(R.layout.fragment_practice, container, false);
 
         idStudentText = getActivity().getIntent().getExtras().getString("id_student");
-        idStudentText = getActivity().getIntent().getExtras().getString("variant");
+        variant = getActivity().getIntent().getExtras().getString("variant");
         ConnectivityManager connManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobileNetwork = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);

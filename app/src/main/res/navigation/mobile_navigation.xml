@@ -60,11 +60,6 @@
         tools:layout="@layout/fragment_formuly" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.bgaek.ui.about_app.AboutAppFragment"
-        android:label="@string/menu_communicate"
-        tools:layout="@layout/fragment_support" />
-    <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.bgaek.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"

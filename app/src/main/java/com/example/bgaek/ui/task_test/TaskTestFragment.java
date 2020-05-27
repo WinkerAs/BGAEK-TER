@@ -36,7 +36,6 @@ public class TaskTestFragment extends Fragment {
     String URL_FOR_Result = "https://bgaek.000webhostapp.com/addResultTest.php";
     String idTest, idStudent, answer;
     Button buttonNextTask;
-    EditText editTextAnswer;
     TextView textViewTaskTest;
     int count = 0;
     RadioButton radioButtonAnswer, radioButtonAnswer2, radioButtonAnswer3, radioButtonAnswer4;
@@ -84,7 +83,7 @@ public class TaskTestFragment extends Fragment {
                     RandomAnswer();
                 }else
                     getActivity().finish();
-                //clearFocus();
+                    clearFocus();
             }
         });
         return root;
@@ -112,8 +111,6 @@ public class TaskTestFragment extends Fragment {
                 answer2 = doc.select("h3").text();
                 answer3 = doc.select("h4").text();
                 answer4 = doc.select("h5").text();
-
-
             } catch (IOException e) {
                 //Если не получилось считать
                 e.printStackTrace();
@@ -138,15 +135,21 @@ public class TaskTestFragment extends Fragment {
             masTest = test.split(";");
             masNameTask = name_task.split(";");
 
+            new Thread(new Runnable() {
+                public void run() {
+
+                }
+            }).start();
+
             for (int i = 0; i < masTest.length; i++){
-            if (masTest[i].equals(idTest)){
-                listAnswer.add(masAnswer[i]);
-                listAnswer2.add(masAnswer2[i]);
-                listAnswer3.add(masAnswer3[i]);
-                listAnswer4.add(masAnswer4[i]);
-                listNameTask.add(masNameTask[i]);
-            }}
-            textViewTaskTest.setText(listAnswer.get(count));
+                if (masTest[i].equals(idTest)){
+                    listAnswer.add(masAnswer[i]);
+                    listAnswer2.add(masAnswer2[i]);
+                    listAnswer3.add(masAnswer3[i]);
+                    listAnswer4.add(masAnswer4[i]);
+                    listNameTask.add(masNameTask[i]);
+                }}
+            textViewTaskTest.setText(listNameTask.get(count));
             RandomAnswer();
         }
     }

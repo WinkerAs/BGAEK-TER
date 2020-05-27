@@ -13,17 +13,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/text_share"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Справочник"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
         <com.github.barteksc.pdfviewer.PDFView
             android:id="@+id/pdfFormulae"
             android:layout_width="match_parent"
