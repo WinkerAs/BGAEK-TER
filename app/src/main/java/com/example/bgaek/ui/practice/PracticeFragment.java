@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PracticeFragment extends Fragment implements RecyclerViewAdapterTest.OnNoteListenner {//Список учителей загружаемых с базы данных
+public class PracticeFragment extends Fragment implements RecyclerViewAdapterTest.OnNoteListenner {
 
     RecyclerView recyclerViewPractice;
 

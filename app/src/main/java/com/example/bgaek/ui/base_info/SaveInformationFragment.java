@@ -71,7 +71,6 @@ public class SaveInformationFragment extends Fragment implements RecyclerViewAda
                 doc = Jsoup.connect(URL).get();
 
                 title = doc.select("h1").text();
-                image = doc.select("h2").text();
                 URLPDF = doc.select("b").text();
 
             } catch (IOException e) {
@@ -86,12 +85,10 @@ public class SaveInformationFragment extends Fragment implements RecyclerViewAda
             super.onPostExecute(result);
 
             String[] masTitle = title.split(";");
-            String[] masImage = image.split(";");
             String[] masURL = URLPDF.split(";");
 
             for (int i = 0; i < masTitle.length; i++){
                 mTitle.add(masTitle[i]);
-                mImages.add(masImage[i]);
                 mURL.add(masURL[i]);
             }
 

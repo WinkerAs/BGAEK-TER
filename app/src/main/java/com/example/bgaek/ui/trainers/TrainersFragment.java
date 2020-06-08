@@ -19,7 +19,7 @@ import java.net.URI;
 public class TrainersFragment extends Fragment {
 
     ImageView imageViewTrainer;
-    Button buttonNextTrainer;
+    Button buttonNextTrainer, buttonPrevios, buttonCheck;
     EditText editTextAnswerTrainer;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -28,6 +28,8 @@ public class TrainersFragment extends Fragment {
 
         imageViewTrainer = root.findViewById(R.id.imageViewTrainer);
         buttonNextTrainer = root.findViewById(R.id.buttonNextTrainer);
+        buttonPrevios = root.findViewById(R.id.buttonPrevious);
+        buttonCheck = root.findViewById(R.id.buttonCheck);
         editTextAnswerTrainer = root.findViewById(R.id.editTextAnswerTrainer);
 
         final String[] answers = {"120", "2", "5", "720", "12", "35", "90", "21", "6","3", "696", "6", "30", "80", "32", "41", "900", "7", "14400", "20"};
@@ -39,22 +41,41 @@ public class TrainersFragment extends Fragment {
         buttonNextTrainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nextQuestion(answers, masImage);
+                if (count < answers.length-1){
+                    count++;
+                    editTextAnswerTrainer.setText("");
+                    imageViewTrainer.setImageResource(masImage[count]);
+                }
+            }
+        });
+        buttonCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nextQuestion(answers);
+            }
+        });
+        buttonPrevios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (count > 0){
+                    count--;
+                    editTextAnswerTrainer.setText("");
+                    imageViewTrainer.setImageResource(masImage[count]);
+                }
             }
         });
 
         return root;
     }
     int count = 0;
-    void nextQuestion(String[] masAnswer, int[] masImage){
+    void nextQuestion(String[] masAnswer){
         if (count < masAnswer.length){
             if (editTextAnswerTrainer.getText().toString().equals(masAnswer[count])){
                 Toast.makeText(getActivity(), "Правильный ответ", Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(getActivity(), "Неправильный ответ", Toast.LENGTH_LONG).show();
             }
-            imageViewTrainer.setImageResource(masImage[count]);
-            count++;
+
         }else{
 
         }

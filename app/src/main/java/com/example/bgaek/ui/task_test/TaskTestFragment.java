@@ -142,7 +142,7 @@ public class TaskTestFragment extends Fragment {
             }).start();
 
             for (int i = 0; i < masTest.length; i++){
-                if (masTest[i].equals(idTest)){
+                if (masTest[i].equalsIgnoreCase(idTest)){
                     listAnswer.add(masAnswer[i]);
                     listAnswer2.add(masAnswer2[i]);
                     listAnswer3.add(masAnswer3[i]);

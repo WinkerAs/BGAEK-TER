@@ -42,12 +42,6 @@
         tools:layout="@layout/fragment_tests" />
 
     <fragment
-        android:id="@+id/nav_control_work"
-        android:name="com.example.bgaek.ui.control_work.ControlWorkFragment"
-        android:label="@string/menu_control_work"
-        tools:layout="@layout/fragment_control_work" />
-
-    <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.bgaek.ui.base_info.SaveInformationFragment"
         android:label="@string/menu_data_info"

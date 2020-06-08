@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.content.Intent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -16,6 +18,9 @@ import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String URL_FOR_LOGIN = URLsConnection.URL_FOR_LOGIN;
     ProgressDialog progressDialog;
     private EditText loginInputEmail, loginInputPassword;
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         loginInputPassword = (EditText) findViewById(R.id.login_input_password);
         buttonLogin = (Button)findViewById(R.id.buttonLogin);
         buttonRegistration = (Button)findViewById(R.id.buttonRegistration);
+        checkBox = findViewById(R.id.checkBox);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -76,6 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                     boolean error = jObj.getBoolean("error");
 
                     if (!error) {
+                        if (checkBox.isChecked()){
+                            saveCheckBox();
+                            saveText(loginInputEmail, loginInputPassword);
+                        }
                         String id_student = jObj.getJSONObject("user").getString("id_student");
                         String variant = jObj.getJSONObject("user").getString("variant");
                         // Launch User activity
@@ -126,5 +137,58 @@ public class LoginActivity extends AppCompatActivity {
     private void hideDialog() {
         if (progressDialog.isShowing())
             progressDialog.dismiss();
+    }
+
+    public void saveText(TextView login, TextView password){
+
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(URLsConnection.FILE_NAME, MODE_PRIVATE);
+
+            fos.write(login.getText().toString().getBytes());
+            fos.write("\n".getBytes());
+            fos.write(password.getText().toString().getBytes());
+        }
+        catch(IOException ex) {
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        finally{
+            try{
+                if(fos!=null)
+                    fos.close();
+            }
+            catch(IOException ex){
+
+                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void saveCheckBox(){
+
+        FileOutputStream fos = null;
+        try {
+
+            String text;
+            if (checkBox.isChecked()){
+                text = "1";
+            }else
+                text = "0";
+
+            fos = openFileOutput(URLsConnection.FILE_CHECK, MODE_PRIVATE);
+            fos.write(text.getBytes());
+        }
+        catch(IOException ex) {
+            //Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        finally{
+            try{
+                if(fos!=null)
+                    fos.close();
+            }
+            catch(IOException ex){
+                //Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

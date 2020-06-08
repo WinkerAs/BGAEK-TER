@@ -42,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
     private static final String TAG = URLsConnection.TAG_SPLASHACTIVITY;
     private static final String URL_FOR_LOGIN = URLsConnection.URL_FOR_LOGIN;
 
-    private final static String FILE_NAME = URLsConnection.FILE_LOGIN;
+    private final static String FILE_NAME = URLsConnection.FILE_NAME;
     private final static String FILE_CHECK = URLsConnection.FILE_CHECK;
 
     String isChekedText, emailText, passwordText;
@@ -259,14 +259,14 @@ public class SplashActivity extends AppCompatActivity {
 
                     if (!error) {
 
-                        //user = jObj.getJSONObject("user").getString("name");
-
-
+                        String id_student = jObj.getJSONObject("user").getString("id_student");
+                        String variant = jObj.getJSONObject("user").getString("variant");
+                        // Launch User activity
                         Intent intent = new Intent(
                                 SplashActivity.this,
                                 MainActivity.class);
-                        //intent.putExtra("id_author", id_author);
-
+                        intent.putExtra("id_student", id_student);
+                        intent.putExtra("variant", variant);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
@@ -295,7 +295,7 @@ public class SplashActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting params to login url
                 Map<String, String> params = new HashMap<>();
-                params.put("email", email);
+                params.put("login", email);
                 params.put("password", password);
                 return params;
             }
