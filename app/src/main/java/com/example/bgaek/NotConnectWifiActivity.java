@@ -19,7 +19,7 @@ public class NotConnectWifiActivity extends AppCompatActivity {
 
         workStyle = new WorkStyle(this);
         textViewNotConnectionWifi = (TextView)findViewById(R.id.textViewNotConnectionWifi);
-        textViewNotConnectionWifi.setText("Это текст");
+        textViewNotConnectionWifi.setText("Проверьте Ваши настройки доступа\nк интернету или попробуйте\nзайти позже");
         buttonRepeatConnection = (Button)findViewById(R.id.buttonRepeatConnection);
         buttonRepeatConnection.setOnClickListener(new View.OnClickListener() {
             @Override

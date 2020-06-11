@@ -21,21 +21,24 @@
             app:srcCompat="@drawable/not_wifi" />
 
         <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
             android:id="@+id/textViewNotConnectionWifi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="18sp" />
 
         <Button
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
             android:id="@+id/buttonRepeatConnection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="100dp"
+            android:text="Обновить" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
