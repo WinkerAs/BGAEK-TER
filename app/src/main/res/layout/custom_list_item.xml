@@ -19,8 +19,8 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textColor="@color/colorBlackBlack"
+            android:textSize="28sp" />
 
         <ImageView
             android:id="@+id/imageView7"

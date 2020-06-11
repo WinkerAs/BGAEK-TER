@@ -32,11 +32,15 @@ public class TrainersFragment extends Fragment {
         buttonCheck = root.findViewById(R.id.buttonCheck);
         editTextAnswerTrainer = root.findViewById(R.id.editTextAnswerTrainer);
 
-        final String[] answers = {"120", "2", "5", "720", "12", "35", "90", "21", "6","3", "696", "6", "30", "80", "32", "41", "900", "7", "14400", "20"};
+        final String[] answers = {"120", "2", "5", "720", "12", "35", "90", "21", "6","3", "696", "6", "30", "80", "32", "41", "900", "7", "14400", "20",
+                "2", "6", "120", "720", "1", "1", "5040", "24", "40320", "362880",
+                "96", "30", "6", "120", "1", "7", "21", "6", "8", "121"};
 
 
         final int[] masImage = {R.drawable.z1, R.drawable.z2, R.drawable.z3, R.drawable.z4, R.drawable.z5, R.drawable.z6, R.drawable.z7, R.drawable.z8, R.drawable.z9, R.drawable.z10,
-                R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4, R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9, R.drawable.a10};
+                R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4, R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9, R.drawable.a10,
+        R.drawable.z11, R.drawable.z12, R.drawable.z13, R.drawable.z14, R.drawable.z15, R.drawable.z16, R.drawable.z17, R.drawable.z18, R.drawable.z19, R.drawable.z20,
+                R.drawable.z21, R.drawable.z22, R.drawable.z23, R.drawable.z24, R.drawable.z25, R.drawable.z26, R.drawable.z27, R.drawable.z28, R.drawable.z29, R.drawable.z30};
         imageViewTrainer.setImageResource(masImage[0]);
         buttonNextTrainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +55,7 @@ public class TrainersFragment extends Fragment {
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nextQuestion(answers);
+                checkQuestion(answers);
             }
         });
         buttonPrevios.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +72,7 @@ public class TrainersFragment extends Fragment {
         return root;
     }
     int count = 0;
-    void nextQuestion(String[] masAnswer){
+    void checkQuestion(String[] masAnswer){
         if (count < masAnswer.length){
             if (editTextAnswerTrainer.getText().toString().equals(masAnswer[count])){
                 Toast.makeText(getActivity(), "Правильный ответ", Toast.LENGTH_LONG).show();

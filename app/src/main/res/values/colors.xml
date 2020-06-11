@@ -8,7 +8,8 @@
     <color name="colorBlueLight">#A6CAF0</color>
     <color name="colorBlueDark">#4C94E0</color>
 
-    <color name="colorBlack">#102747</color>
+    <color name="colorBlack">#163B73</color>
+    <color name="colorBlackBlack">#1A1A1A</color>
     <color name="colorGreenDark">#026340</color>
     <color name="colorPurple">#802957</color>
 
