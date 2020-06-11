@@ -1,10 +1,15 @@
 package com.example.bgaek;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -19,15 +24,31 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
+    private final static String FILE_STYLE = "checkBoxStyle.txt";
+    String isChekedText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        File fileStyle = new File(getFilesDir() +"/"+FILE_STYLE);
+        if (!fileStyle.exists()){
+            createFile();
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -43,8 +64,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        //new WorkStyle(this).styleDark();
+        openTextStyle();
+        if (isChekedText.equals("1")){
+            setTheme(R.style.AppThemeDark);
+            switchStyle();
+        }
     }
 
     @Override
@@ -59,5 +83,69 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    void switchStyle(){
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getTheme();
+
+        theme.resolveAttribute(android.R.attr.windowBackground, typedValue, true);
+        getWindow().getDecorView().setBackgroundColor(typedValue.data);
+
+        theme.resolveAttribute(android.R.attr.colorPrimary, typedValue, true);
+
+        theme.resolveAttribute(android.R.attr.colorPrimaryDark, typedValue, true);
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+    }
+
+    public void openTextStyle(){
+
+        FileInputStream fin = null;
+
+        try {
+            fin = openFileInput(FILE_STYLE);
+            byte[] bytes = new byte[fin.available()];
+            fin.read(bytes);
+            String text = new String (bytes);
+            isChekedText = text;
+            //Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        }
+        catch(IOException ex) {
+            // Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        finally{
+            try{
+                if(fin!=null)
+                    fin.close();
+            }
+            catch(IOException ex){
+                // Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void createFile(){
+        FileOutputStream fos = null;
+        try {
+
+            String text;
+            text = "000";
+
+            fos = openFileOutput(FILE_STYLE, Context.MODE_PRIVATE);
+            fos.write(text.getBytes());
+        }
+        catch(IOException ex) {
+            //Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        finally{
+            try{
+                if(fos!=null)
+                    fos.close();
+            }
+            catch(IOException ex){
+                //Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@
 
     <style name="AppThemeDark" parent="ThemeOverlay.MaterialComponents.Dark">
         <!-- Customize your theme here. -->
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorBlueLight</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.DarkActionBar">
@@ -24,6 +24,10 @@
 
     <style name="ButtonMain">
         <item name="android:background">@drawable/button</item>
+    </style>
+
+    <style name="ButtonAccept">
+        <item name="android:background">@drawable/button_accept</item>
     </style>
 
     <style name="PurpleButton" parent="@style/Widget.AppCompat.Button.Colored">

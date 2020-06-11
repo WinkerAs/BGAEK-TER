@@ -22,15 +22,6 @@
             android:text="Темная тема"
             android:textSize="18sp" />
 
-        <Switch
-            android:id="@+id/switch2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="left|center"
-            android:text="Включить уведомления"
-            android:textSize="18sp" />
-
         <Button
             android:id="@+id/buttonExitUser"
             android:layout_width="match_parent"

@@ -19,14 +19,20 @@
             android:id="@+id/textViewVariant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/letter_soup"
             android:text="Ваш вариант:"
+            android:textAlignment="viewEnd"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textViewQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/letter_soup"
             android:text="Задание "
+            android:textAlignment="center"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -41,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/letter_soup"
                 android:text="Ответ "
                 android:textSize="24sp" />
 
@@ -50,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:fontFamily="@font/letter_soup"
                 android:hint="Ваш ответ"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
@@ -58,13 +66,15 @@
         </LinearLayout>
 
         <Button
+            android:textColor="@color/colorWhite"
+            style="@style/ButtonMain"
             android:id="@+id/buttonNextAnswer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="100dp"
             android:gravity="center"
             android:text="Далее" />
 

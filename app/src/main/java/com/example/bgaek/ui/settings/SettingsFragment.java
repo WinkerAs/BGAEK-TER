@@ -29,10 +29,6 @@ import android.widget.Toast;
 
 import com.example.bgaek.LoginActivity;
 import com.example.bgaek.R;
-import com.example.bgaek.URLsConnection;
-import com.example.bgaek.WorkDialog;
-import com.example.bgaek.WorkStyle;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -41,8 +37,6 @@ import java.io.IOException;
 public class SettingsFragment  extends Fragment {
 
     Switch switchStyle;
-    WorkStyle workStyle, workStyle2;
-    int status;
     Button buttonExitUser;
     private final static String FILE_CHECK = "checkBoxStatusBGAEK.txt";
     private final static String FILE_STYLE = "checkBoxStyle.txt";
@@ -125,14 +119,6 @@ public class SettingsFragment  extends Fragment {
         Window window = getActivity().getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
     }
-
-
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Toast.makeText(getActivity(), "Отслеживание переключения: " + (isChecked ? "on" : "off"),
-                Toast.LENGTH_SHORT).show();
-    }
-
-
 
     public void saveCheckBox(@NonNull LayoutInflater inflater, ViewGroup container){
 
