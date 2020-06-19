@@ -7,13 +7,14 @@
     android:layout_marginTop="2dp">
 
     <TextView
-        android:background="@color/colorBlueLight"
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorBlueLight"
         android:fontFamily="@font/amazing_grotesk"
         android:text="Вход"
         android:textAlignment="center"
+        android:textColor="@color/colorBlack"
         android:textSize="24sp" />
 
     <EditText

@@ -2,13 +2,14 @@ package com.example.bgaek;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 
 public class ResultActivity extends AppCompatActivity {
 
-    Button buttonResTest, buttonResPractice, buttonResControlWork;
+    Button buttonResTest, buttonResPractice;
     WebView webView;
 
     @Override
@@ -17,28 +18,35 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         buttonResPractice = findViewById(R.id.buttonResPractice);
-        buttonResPractice = findViewById(R.id.buttonResControlWork);
-        buttonResPractice = findViewById(R.id.buttonResTest);
+        buttonResTest = findViewById(R.id.buttonResTest);
 
         webView = findViewById(R.id.webViewRes);
-
+        webView.loadUrl("https://bgaek.000webhostapp.com/getResTest.php");
+        buttonResTest.setEnabled(false);
         buttonResTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                webView.loadUrl("file:///android_asset/mypage.html");
+                buttonResTest.setEnabled(false);
+                buttonResPractice.setEnabled(true);
+                webView.loadUrl("https://bgaek.000webhostapp.com/getResTest.php");
             }
         });
-        buttonResControlWork.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                webView.loadUrl("file:///android_asset/mypage.html");
-            }
-        });
+
         buttonResPractice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                webView.loadUrl("file:///android_asset/mypage.html");
+                buttonResTest.setEnabled(true);
+                buttonResPractice.setEnabled(false);
+                webView.loadUrl("https://bgaek.000webhostapp.com/getRes.php");
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

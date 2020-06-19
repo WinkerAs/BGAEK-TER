@@ -33,8 +33,6 @@ import java.util.Random;
 public class TestActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    String urlDemo = "https://bgaek.000webhostapp.com/getDataTestDemo.php";
-    String urlAnswer = "https://bgaek.000webhostapp.com/getDataTest.php";
     String URL_FOR_Result = "https://bgaek.000webhostapp.com/addResultTest.php";
     String idTest, idStudent, answer;
     Button buttonNextTask;
@@ -96,10 +94,9 @@ public class TestActivity extends AppCompatActivity {
                     textViewTaskTest.setText(listNameTask.get(count));
                     RandomAnswer();
                 }else{
-                    addResultTest(idStudent, masNameTask[0], String.valueOf(point));
-                    finish();
+                    addResultTest(idStudent, nameTest, String.valueOf(point));
                     Toast.makeText(getApplicationContext(), "Количество правильных ответов: "+point, Toast.LENGTH_LONG).show();
-
+                    finish();
                 }
 
                 clearCheck();
@@ -117,9 +114,6 @@ public class TestActivity extends AppCompatActivity {
 
     int[] masArrayTest, masArrayAnswer, masArrayAnswer2;
     String nameTest;
-    int[] masNamePractice;
-    String[] masName;
-
     public void loadTest(){
         listAnswer = new ArrayList<>();
         listAnswer2 = new ArrayList<>();
@@ -137,6 +131,7 @@ public class TestActivity extends AppCompatActivity {
                 masAnswer3 = getResources().getStringArray(masArrayAnswer[2]);
                 masAnswer4 = getResources().getStringArray(masArrayAnswer[3]);
                 masNameTask = getResources().getStringArray(masArrayTest[Integer.parseInt(idTest)]);
+                nameTest = getResources().getStringArray(R.array.Test)[0];
                 break;
             case "1":
                 masAnswer = getResources().getStringArray(masArrayAnswer2[0]);
@@ -144,6 +139,7 @@ public class TestActivity extends AppCompatActivity {
                 masAnswer3 = getResources().getStringArray(masArrayAnswer2[2]);
                 masAnswer4 = getResources().getStringArray(masArrayAnswer2[3]);
                 masNameTask = getResources().getStringArray(masArrayTest[Integer.parseInt(idTest)]);
+                nameTest = getResources().getStringArray(R.array.Test)[1];
                 break;
         }
 
@@ -161,7 +157,7 @@ public class TestActivity extends AppCompatActivity {
 
     private void addResultTest(final String id_student, final String testText, final String mark) {
         // Tag used to cancel the request
-        String cancel_req_tag = "register";
+        String cancel_req_tag = "TestActivity";
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 URL_FOR_Result, new Response.Listener<String>() {

@@ -120,11 +120,11 @@ public class ControlWorkFragment extends Fragment{
             RecyclerViewAdapterTest adapterCategories = new RecyclerViewAdapterTest(getActivity(), mTitle, mImages, new RecyclerViewAdapterTest.OnNoteListenner() {
                 @Override
                 public void onNoteClick(int postition) {
-                    Intent intent = new Intent(getActivity(), PracticeActivity.class);
+                    Intent intent = new Intent(getActivity(), ControlActivity.class);
                     intent.putExtra("urlPractice", mIdPractice.get(postition));
                     intent.putExtra("id_student", idStudentText);
                     intent.putExtra("variant", "2");
-                    intent.putExtra("idPractice", String.valueOf(postition));
+                    intent.putExtra("idControl", String.valueOf(postition));
                     startActivity(intent);
                 }
             });
