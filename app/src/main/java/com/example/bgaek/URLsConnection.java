@@ -9,9 +9,4 @@ public class URLsConnection {
 
     final static String TAG_SPLASHACTIVITY = "SplashActivity";
     final static String TAG_LOGINACTIVITY = "LoginActivity";
-    final static String TAG_SETTINGS = "LoginActivity";
-    final static String TAG_NOTCONNECTION = "LoginActivity";
-    final static String TAG_TESTACTIVITY = "LoginActivity";
-
-    final static String URLPRACTICE = "https://bgaek.000webhostapp.com/getPractice.php";
 }

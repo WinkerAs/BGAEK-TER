@@ -1,6 +1,7 @@
 package com.example.bgaek.ui.settings;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +10,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -23,21 +25,26 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bgaek.ExampleDialog;
 import com.example.bgaek.LoginActivity;
 import com.example.bgaek.R;
+import com.example.bgaek.RegistrationActivity;
+import com.example.bgaek.ResultActivity;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class SettingsFragment  extends Fragment {
+public class SettingsFragment  extends DialogFragment implements ExampleDialog.ExampleDialogListener{
 
     Switch switchStyle;
-    Button buttonExitUser;
+    Button buttonExitUser, buttonResultPrep;
     private final static String FILE_CHECK = "checkBoxStatusBGAEK.txt";
     private final static String FILE_STYLE = "checkBoxStyle.txt";
     AlertDialog.Builder ad;
@@ -45,21 +52,23 @@ public class SettingsFragment  extends Fragment {
     String isChekedText;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
-                            final ViewGroup container, Bundle savedInstanceState) {
+                             final ViewGroup container, final Bundle savedInstanceState) {
 
         final View root = inflater.inflate(R.layout.fragment_settings, container, false);
         File fileStyle = new File(getActivity().getFilesDir() +"/"+FILE_STYLE);
 
         switchStyle = (Switch)root.findViewById(R.id.switchStyle);
         buttonExitUser = (Button)root.findViewById(R.id.buttonExitUser);
+        buttonResultPrep = (Button)root.findViewById(R.id.buttonResultPrep);
+
         buttonExitUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ad.show();
             }
         });
-
         context = getActivity();
+
         String title = "Вы уверены, что хотите выйти?";
         String button1String = "Отмена";
         String button2String = "Выйти";
@@ -103,8 +112,36 @@ public class SettingsFragment  extends Fragment {
                 switchStyle();
             }
         });
+
+        buttonResultPrep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                // Get the layout inflater
+                View mview = getLayoutInflater().inflate(R.layout.dialog_signin, null);
+                final EditText passwordEdit = mview.findViewById(R.id.password);
+                Button buttonLogin = mview.findViewById(R.id.buttonLoginRes);
+
+                builder.setView(mview);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+                buttonLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (passwordEdit.getText().toString().equals("702260")){
+                            Intent intent = new Intent(getActivity(), ResultActivity.class);
+                            startActivity(intent);
+                        }else{
+                            dialog.cancel();
+                        }
+                    }
+                });
+            }
+        });
         return root;
     }
+
 
     void switchStyle(){
         TypedValue typedValue = new TypedValue();
@@ -222,4 +259,11 @@ public class SettingsFragment  extends Fragment {
         }
     }
 
+    @Override
+    public void applyTexts(String pass) {
+        if (pass.equals("123456")){
+            Intent intent = new Intent(getActivity(), ResultActivity.class);
+            startActivity(intent);
+        }
+    }
 }

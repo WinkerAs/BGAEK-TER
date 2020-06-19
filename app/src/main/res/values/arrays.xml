@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="Practice">
+        <item>Практика №1</item>
+        <item>Практика №2</item>
+        <item>Практика №3</item>
+        <item>Практика №4</item>
+    </string-array>
+
+    <string-array name="Test">
+        <item>Тест №1</item>
+        <item>Тест №2</item>
+    </string-array>
+
+    <string-array name="Control">
+        <item>Контрольная работа №1</item>
+    </string-array>
+
+    <string-array name="Testq1">
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает не менее пяти очков, равна</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает не более трех очков, равна</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает два очка, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает число очков, кратное трем, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает четное чисто очков, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что сумма выпавших очков кратна четырем, равна
+</item>
+        <item>Игральная кость бросается один раз, Тогда вероятность того,
+что сумма выпавших очков кратна пяти, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что сумма выпадавших очков является простым, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что сумма выпавших очков является составным, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность
+того, что сумма выпавших очков равна девяти, равна
+</item>
+    </string-array>
+
+    <string-array name="Testq1v1">
+        <item>1/3</item>
+        <item>1/2</item>
+        <item>1/6</item>
+        <item>1/3</item>
+        <item>1/2</item>
+        <item>1/6</item>
+        <item>5/36</item>
+        <item>13/36</item>
+        <item>23/36</item>
+        <item>1/9</item>
+    </string-array>
+
+    <string-array name="Testq1v2">
+        <item>1/2</item>
+        <item>1/3</item>
+        <item>1/2</item>
+        <item>1/6</item>
+        <item>1/3</item>
+        <item>1/3</item>
+        <item>1/6</item>
+        <item>15/36</item>
+        <item>15/36</item>
+        <item>15/36</item>
+    </string-array>
+
+    <string-array name="Testq1v3">
+        <item>1/5</item>
+        <item>1/4</item>
+        <item>1/3</item>
+        <item>1/2</item>
+        <item>1/4</item>
+        <item>1/4</item>
+        <item>5/18</item>
+        <item>23/36</item>
+        <item>13/36</item>
+        <item>13/36</item>
+    </string-array>
+
+    <string-array name="Testq1v4">
+        <item>1/4</item>
+        <item>1/6</item>
+        <item>1/4</item>
+        <item>1/5</item>
+        <item>1/5</item>
+        <item>1/5</item>
+        <item>1/4</item>
+        <item>1/9</item>
+        <item>1/9</item>
+        <item>23/36</item>
+    </string-array>
+
+    <string-array name="Testq2">
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает не менее пяти очков, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает не более трех очков, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает два очка, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает число очков, кратное трем, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что на верхней грани выпадает четное чисто очков, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что сумма выпавших очков кратна четырем, равна
+</item>
+        <item>Игральная кость бросается один раз, Тогда вероятность того,
+что сумма выпавших очков кратна пяти, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что сумма выпадавших очков является простым, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность того,
+что сумма выпавших очков является составным, равна
+</item>
+        <item>Игральная кость бросается один раз. Тогда вероятность
+того, что сумма выпавших очков равна девяти, равна
+</item>
+    </string-array>
+
+    <string-array name="Testq2v1">
+        <item>1/10</item>
+        <item>1/13</item>
+        <item>17/20</item>
+        <item>5/6</item>
+        <item>3/4</item>
+        <item>5/17</item>
+        <item>5/99</item>
+        <item>3/4</item>
+        <item>3/5</item>
+        <item>3/10</item>
+    </string-array>
+
+    <string-array name="Testq2v2">
+        <item>1/9</item>
+        <item>1/4</item>
+        <item>1/8</item>
+        <item>1/3</item>
+        <item>7/20</item>
+        <item>4/17</item>
+        <item>17/99</item>
+        <item>3/20</item>
+        <item>3/4</item>
+        <item>1/4</item>
+    </string-array>
+
+    <string-array name="Testq2v3">
+        <item>1/2</item>
+        <item>1/52</item>
+        <item>1/17</item>
+        <item>8/30</item>
+        <item>4/5</item>
+        <item>8/17</item>
+        <item>1/5</item>
+        <item>1/4</item>
+        <item>1/4</item>
+        <item>3/5</item>
+    </string-array>
+
+    <string-array name="Testq2v4">
+        <item>1/99</item>
+        <item>1/9</item>
+        <item>1/9</item>
+        <item>1/4</item>
+        <item>7/20</item>
+        <item>9/19</item>
+        <item>1/20</item>
+        <item>3/10</item>
+        <item>3/20</item>
+        <item>3/4</item>
+    </string-array>
+
+    <string-array name="PracticeName1">
+        <item>Задание 1.1</item>
+        <item>Задание 1.2</item>
+        <item>Задание 1.3</item>
+        <item>Задание 2</item>
+        <item>Задание 3</item>
+        <item>Задание 4</item>
+        <item>Задание 5</item>
+        <item>Задание 6</item>
+    </string-array>
+
+
+    <string-array name="PracticeName2">
+        <item>Задание 1</item>
+        <item>Задание 2</item>
+        <item>Задание 3</item>
+        <item>Задание 4</item>
+        <item>Задание 5</item>
+        <item>Задание 6</item>
+    </string-array>
+
+    <string-array name="PracticeName3">
+        <item>Задание 1.1</item>
+        <item>Задание 1.2</item>
+        <item>Задание 1.3</item>
+        <item>Задание 1.4</item>
+        <item>Задание 2</item>
+        <item>Задание 3</item>
+    </string-array>
+
+    <string-array name="PracticeName4">
+        <item>Задание 1</item>
+        <item>Задание 2</item>
+        <item>Задание 3.1</item>
+        <item>Задание 3.2</item>
+        <item>Задание 4.1</item>
+        <item>Задание 4.2</item>
+    </string-array>
+
+    <string-array name="PracticeName5">
+        <item>Задание 1</item>
+        <item>Задание 2</item>
+        <item>Задание 3.1</item>
+        <item>Задание 3.2</item>
+        <item>Задание 4.1</item>
+        <item>Задание 4.2</item>
+    </string-array>
+
+    <string-array name="PR1v1">
+        <item>40320</item>
+        <item>6720</item>
+        <item>56</item>
+        <item>0.8333</item>
+        <item>0.1388</item>
+        <item>0.2111</item>
+        <item>0.0083</item>
+        <item>0.2071</item>
+    </string-array>
+
+    <string-array name="PR1v2">
+        <item>120</item>
+        <item>60</item>
+        <item>10</item>
+        <item>0.2222</item>
+        <item>0.5833</item>
+        <item>0.0442</item>
+        <item>0.75</item>
+        <item>0.2166</item>
+    </string-array>
+
+    <string-array name="PR1v3">
+        <item>720</item>
+        <item>360</item>
+        <item>15</item>
+        <item>0.4</item>
+        <item>0.1666</item>
+        <item>0.1511</item>
+        <item>0.0417</item>
+        <item>0.2767</item>
+    </string-array>
+
+    <string-array name="PR1v4">
+        <item>120</item>
+        <item>120</item>
+        <item>5</item>
+        <item>0.825</item>
+        <item>0.1666</item>
+        <item>0.2098</item>
+        <item>0.0083</item>
+        <item>0.0087</item>
+    </string-array>
+
+    <string-array name="PR1v5">
+        <item>720</item>
+        <item>120</item>
+        <item>20</item>
+        <item>0.01</item>
+        <item>0.1111</item>
+        <item>0.0422</item>
+        <item>0.0417</item>
+        <item>0.0336</item>
+    </string-array>
+
+    <string-array name="PR1v6">
+        <item>5040</item>
+        <item>840</item>
+        <item>35</item>
+        <item>0.2</item>
+        <item>0.7222</item>
+        <item>0.2610</item>
+        <item>0.0014</item>
+        <item>0.5556</item>
+    </string-array>
+
+    <string-array name="PR1v7">
+        <item>720</item>
+        <item>30</item>
+        <item>15</item>
+        <item>0.95</item>
+        <item>0.1311</item>
+        <item>0.4079</item>
+        <item>0.0417</item>
+        <item>0.4560</item>
+    </string-array>
+
+    <string-array name="PR1v8">
+        <item>5040</item>
+        <item>2520</item>
+        <item>21</item>
+        <item>0.0329</item>
+        <item>0.2777</item>
+        <item>0.1223</item>
+        <item>0.0083</item>
+        <item>0.3854</item>
+    </string-array>
+
+    <string-array name="PR1v9">
+        <item>120</item>
+        <item>20</item>
+        <item>10</item>
+        <item>0.1111</item>
+        <item>0.75</item>
+        <item>0.0995</item>
+        <item>0.0014</item>
+        <item>0.3521</item>
+    </string-array>
+
+    <string-array name="PR1v10">
+        <item>5040</item>
+        <item>5040</item>
+        <item>7</item>
+        <item>0.52</item>
+        <item>0.1666</item>
+        <item>0.1228</item>
+        <item>0.0014</item>
+        <item>0.29</item>
+    </string-array>
+
+    <string-array name="PR2v1">
+        <item>0.4</item>
+        <item>0.0125</item>
+        <item>0.1406</item>
+        <item>0.1904</item>
+        <item>0.6597</item>
+        <item>0.4375</item>
+    </string-array>
+
+    <string-array name="PR2v2">
+        <item>0.3333</item>
+        <item>0.0125</item>
+        <item>0.49</item>
+        <item>0.238</item>
+        <item>0.75</item>
+        <item>0.3056</item>
+    </string-array>
+
+    <string-array name="PR2v3">
+        <item>0.25</item>
+        <item>0.0136</item>
+        <item>0.4444</item>
+        <item>0.2380</item>
+        <item>0.6735</item>
+        <item>0.3733</item>
+    </string-array>
+
+    <string-array name="PR2v4">
+        <item>0.5333</item>
+        <item>0.0167</item>
+        <item>0.5102</item>
+        <item>0.1428</item>
+        <item>0.75</item>
+        <item>0.4375</item>
+    </string-array>
+
+    <string-array name="PR2v5">
+        <item>0.3333</item>
+        <item>0.0208</item>
+        <item>0.3086</item>
+        <item>0.2857</item>
+        <item>0.2099</item>
+        <item>0.5556</item>
+    </string-array>
+
+    <string-array name="PR2v6">
+        <item>0.25</item>
+        <item>0.0318</item>
+        <item>0.3403</item>
+        <item>0.2381</item>
+        <item>0.8163</item>
+        <item>0.6597</item>
+    </string-array>
+
+    <string-array name="PR2v7">
+        <item>0.2</item>
+        <item>0.0167</item>
+        <item>0.25</item>
+        <item>0.1904</item>
+        <item>0.6094</item>
+        <item>0.3056</item>
+    </string-array>
+
+    <string-array name="PR2v8">
+        <item>0.25</item>
+        <item>0.0125</item>
+        <item>0.3265</item>
+        <item>0.1904</item>
+        <item>0.64</item>
+        <item>0.36</item>
+    </string-array>
+
+    <string-array name="PR2v9">
+        <item>0.5</item>
+        <item>0.0083</item>
+        <item>0.25</item>
+        <item>0.3333</item>
+        <item>0.3056</item>
+        <item>0.4375</item>
+    </string-array>
+
+    <string-array name="PR2v10">
+        <item>0.25</item>
+        <item>0.0182</item>
+        <item>0.7901</item>
+        <item>0.238</item>
+        <item>0.8889</item>
+        <item>0.36</item>
+    </string-array>
+
+    <string-array name="PR3v1">
+        <item>0.0135</item>
+        <item>0.4655</item>
+        <item>0.374</item>
+        <item>0.626</item>
+        <item>0.902</item>
+        <item>0.988</item>
+    </string-array>
+
+    <string-array name="PR3v2">
+        <item>0.0088</item>
+        <item>0.4313</item>
+        <item>0.4388</item>
+        <item>0.5613</item>
+        <item>0.656</item>
+        <item>0.797</item>
+    </string-array>
+
+    <string-array name="PR3v3">
+        <item>0.0068</item>
+        <item>0.4653</item>
+        <item>0.4208</item>
+        <item>0.5793</item>
+        <item>0.0428</item>
+        <item>0.7</item>
+    </string-array>
+
+    <string-array name="PR3v4">
+        <item>0.0138</item>
+        <item>0.5063</item>
+        <item>0.3038</item>
+        <item>0.6963</item>
+        <item>0.788</item>
+        <item>0.7</item>
+    </string-array>
+
+    <string-array name="PR3v5">
+        <item>0.007</item>
+        <item>0.421</item>
+        <item>0.468</item>
+        <item>0.532</item>
+        <item>0.8325</item>
+        <item>0.996</item>
+    </string-array>
+
+    <string-array name="PR3v6">
+        <item>0.009</item>
+        <item>0.407</item>
+        <item>0.476</item>
+        <item>0.524</item>
+        <item>0.941</item>
+        <item>0.991</item>
+    </string-array>
+
+    <string-array name="PR3v7">
+        <item>0.003</item>
+        <item>0.329</item>
+        <item>0.612</item>
+        <item>0.388</item>
+        <item>0.9986</item>
+        <item>0.671</item>
+    </string-array>
+
+    <string-array name="PR3v8">
+        <item>0.0015</item>
+        <item>0.3095</item>
+        <item>0.646</item>
+        <item>0.354</item>
+        <item>0.973</item>
+        <item>0.6713</item>
+    </string-array>
+
+    <string-array name="PR3v9">
+        <item>0.0019</item>
+        <item>0.3406</item>
+        <item>0.6056</item>
+        <item>0.3944</item>
+        <item>0.902</item>
+        <item>0.727</item>
+    </string-array>
+
+    <string-array name="PR3v10">
+        <item>0.027</item>
+        <item>0.461</item>
+        <item>0.308</item>
+        <item>0.692</item>
+        <item>0.438</item>
+        <item>0.671</item>
+    </string-array>
+
+    <string-array name="PR4v1">
+        <item>0.7</item>
+        <item>0.9954</item>
+        <item>0.67</item>
+        <item>0.2388</item>
+        <item>0.4</item>
+        <item>0.1667</item>
+    </string-array>
+
+    <string-array name="PR4v2">
+        <item>0.6333</item>
+        <item>0.9969</item>
+        <item>0.53</item>
+        <item>0.4528</item>
+        <item>0.5</item>
+        <item>0.6667</item>
+    </string-array>
+
+    <string-array name="PR4v3">
+        <item>0.6667</item>
+        <item>0.9972</item>
+        <item>0.79</item>
+        <item>0.2658</item>
+        <item>0.55</item>
+        <item>0.3491</item>
+    </string-array>
+
+    <string-array name="PR4v4">
+        <item>0.6667</item>
+        <item>0.9949</item>
+        <item>0.65</item>
+        <item>0.2462</item>
+        <item>0.35</item>
+        <item>0.2286</item>
+    </string-array>
+
+    <string-array name="PR4v5">
+        <item>0.7</item>
+        <item>0.997</item>
+        <item>0.65</item>
+        <item>0.1846</item>
+        <item>0.06</item>
+        <item>0.9167</item>
+    </string-array>
+
+    <string-array name="PR4v6">
+        <item>0.6333</item>
+        <item>0.9965</item>
+        <item>0.75</item>
+        <item>0.16</item>
+        <item>0.75</item>
+        <item>0.2667</item>
+    </string-array>
+
+    <string-array name="PR4v7">
+        <item>0.7333</item>
+        <item>0.9953</item>
+        <item>0.61</item>
+        <item>0.3443</item>
+        <item>0.033</item>
+        <item>0.303</item>
+    </string-array>
+
+    <string-array name="PR4v8">
+        <item>0.8667</item>
+        <item>0.9971</item>
+        <item>0.65</item>
+        <item>0.1846</item>
+        <item>0.71</item>
+        <item>0.1988</item>
+    </string-array>
+
+    <string-array name="PR4v9">
+        <item>0.7333</item>
+        <item>0.9944</item>
+        <item>0.69</item>
+        <item>0.1014</item>
+        <item>0.2982</item>
+        <item>0.5294</item>
+    </string-array>
+
+    <string-array name="PR4v10">
+        <item>0.7</item>
+        <item>0.9954</item>
+        <item>0.73</item>
+        <item>0.3699</item>
+        <item>0.63</item>
+        <item>0.8889</item>
+    </string-array>
+</resources>

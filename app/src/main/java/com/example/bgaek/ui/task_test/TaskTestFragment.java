@@ -27,6 +27,7 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -39,6 +40,8 @@ public class TaskTestFragment extends Fragment {
     TextView textViewTaskTest;
     int count = 0;
     RadioButton radioButtonAnswer, radioButtonAnswer2, radioButtonAnswer3, radioButtonAnswer4;
+    String[]  masAnswer2, masAnswer3, masAnswer4, masTest, masNameTask;
+    ArrayList<String> listAnswer, listAnswer2, listAnswer3, listAnswer4, listNameTask;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              final ViewGroup container, Bundle savedInstanceState) {
@@ -54,8 +57,7 @@ public class TaskTestFragment extends Fragment {
         idStudent = getActivity().getIntent().getExtras().getString("id_student");
         idTest = getActivity().getIntent().getExtras().getString("idTest");
 
-        MyTask myTask = new MyTask();
-        myTask.execute();
+        loadTest();
 
         buttonNextTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,79 +82,55 @@ public class TaskTestFragment extends Fragment {
                 }
                 count++;
                 if(count < listAnswer.size()){
+                    textViewTaskTest.setText(listNameTask.get(count));
                     RandomAnswer();
                 }else
                     getActivity().finish();
-                    clearFocus();
+                clearFocus();
             }
         });
         return root;
     }
 
-    String[] masAnswer, masAnswer2, masAnswer3, masAnswer4, masTest, masNameTask;
-    ArrayList<String> listAnswer, listAnswer2, listAnswer3, listAnswer4, listNameTask;
+    int[] masArrayTest, masArrayAnswer, masArrayAnswer2;
+    String[] masName, masAnswer;
+    int point;
+    public void loadTest(){
+        masArrayTest = new int[]{R.array.Testq1, R.array.Testq2};
+        masArrayAnswer = new int[]{R.array.Testq1v1, R.array.Testq1v2,  R.array.Testq1v3,  R.array.Testq1v4};
+        masArrayAnswer2 = new int[]{R.array.Testq2v1, R.array.Testq2v2,  R.array.Testq2v3,  R.array.Testq2v4};
 
-    class MyTask extends AsyncTask<Void, Void, Void> {
-
-        String test, name_task, answer, answer2, answer3, answer4;//Тут храним значение заголовка сайта
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            Document doc = null;//Здесь хранится будет разобранный html документ
-
-            try {
-                //Считываем заглавную страницу http://harrix.org
-                doc = Jsoup.connect(urlAnswer).get();
-
-                test = doc.select("b").text();
-                name_task = doc.select("h1").text();
-                answer = doc.select("h2").text();
-                answer2 = doc.select("h3").text();
-                answer3 = doc.select("h4").text();
-                answer4 = doc.select("h5").text();
-            } catch (IOException e) {
-                //Если не получилось считать
-                e.printStackTrace();
-            }
-            return null;
+        switch (idTest){
+            case "1":
+                masName = getResources().getStringArray(masArrayTest[0]);
+                masAnswer = getResources().getStringArray(masArrayAnswer[0]);
+                masAnswer2 = getResources().getStringArray(masArrayAnswer[1]);
+                masAnswer3 = getResources().getStringArray(masArrayAnswer[2]);
+                masAnswer4 = getResources().getStringArray(masArrayAnswer[3]);
+                masTest = getResources().getStringArray(masArrayTest[Integer.parseInt(idTest)-1]);
+                break;
+            case "2":
+                masName = getResources().getStringArray(masArrayTest[1]);
+                masAnswer = getResources().getStringArray(masArrayAnswer2[0]);
+                masAnswer2 = getResources().getStringArray(masArrayAnswer2[1]);
+                masAnswer3 = getResources().getStringArray(masArrayAnswer2[2]);
+                masAnswer4 = getResources().getStringArray(masArrayAnswer2[3]);
+                masTest = getResources().getStringArray(masArrayTest[Integer.parseInt(idTest)-1]);
+                break;
         }
 
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            listNameTask = new ArrayList<>();
-            listAnswer = new ArrayList<>();
-            listAnswer2 = new ArrayList<>();
-            listAnswer3 = new ArrayList<>();
-            listAnswer4 = new ArrayList<>();
-
-            masAnswer = answer.split(";");
-            masAnswer2 = answer2.split(";");
-            masAnswer3 = answer3.split(";");
-            masAnswer4 = answer4.split(";");
-            masTest = test.split(";");
-            masNameTask = name_task.split(";");
-
-            new Thread(new Runnable() {
-                public void run() {
-
-                }
-            }).start();
-
-            for (int i = 0; i < masTest.length; i++){
-                if (masTest[i].equalsIgnoreCase(idTest)){
-                    listAnswer.add(masAnswer[i]);
-                    listAnswer2.add(masAnswer2[i]);
-                    listAnswer3.add(masAnswer3[i]);
-                    listAnswer4.add(masAnswer4[i]);
-                    listNameTask.add(masNameTask[i]);
-                }}
-            textViewTaskTest.setText(listNameTask.get(count));
-            RandomAnswer();
+        for (int i = 0; i < masTest.length; i++) {
+                listAnswer.add(masAnswer[i]);
+                listAnswer2.add(masAnswer2[i]);
+                listAnswer3.add(masAnswer3[i]);
+                listAnswer4.add(masAnswer4[i]);
+                listNameTask.add(masNameTask[i]);
         }
+
+        textViewTaskTest.setText(listNameTask.get(count));
+        RandomAnswer();
     }
+
 
     private void addResultTest(final String id_student, final String id_test, final String mark) {
         // Tag used to cancel the request
@@ -194,7 +172,7 @@ public class TaskTestFragment extends Fragment {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_student", id_student);
-                params.put("id_test", id_test);
+                params.put("testText", id_test);
                 params.put("mark", mark);
                 return params;
             }

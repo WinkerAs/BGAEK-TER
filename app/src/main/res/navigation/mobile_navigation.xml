@@ -34,6 +34,11 @@
         android:name="com.example.bgaek.ui.practice.PracticeFragment"
         android:label="@string/menu_practice"
         tools:layout="@layout/fragment_practice" />
+    <fragment
+        android:id="@+id/nav_control"
+        android:name="com.example.bgaek.ui.control_work.ControlWorkFragment"
+        android:label="@string/menu_control_work"
+        tools:layout="@layout/fragment_control_work" />
 
     <fragment
         android:id="@+id/nav_gallery"

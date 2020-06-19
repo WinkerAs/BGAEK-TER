@@ -1,4 +1,4 @@
-package com.example.bgaek.ui.practice;
+package com.example.bgaek.ui.control_work;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,55 +18,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.example.bgaek.AppSingleton;
+import com.example.bgaek.ControlActivity;
 import com.example.bgaek.PracticeActivity;
 import com.example.bgaek.R;
 import com.example.bgaek.RecyclerViewAdapterTest;
 import com.example.bgaek.WorkDialog;
-import com.example.bgaek.URLsConnection;
 import com.example.bgaek.ui.notConnect.FragmentNotConnect;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
-public class PracticeFragment extends Fragment implements RecyclerViewAdapterTest.OnNoteListenner {
+public class ControlWorkFragment extends Fragment{
 
-    RecyclerView recyclerViewPractice;
+    private RecyclerView recyclerViewControlWork;
 
-    ArrayList<String> mTitle = new ArrayList<>();
-    ArrayList<String> mIdPractice = new ArrayList<>();
-    ArrayList<String> mImages = new ArrayList<>();
-    HashMap<Integer, String> hashMap = new HashMap<>();
-    String idStudentText, variant;
+    private ArrayList<String> mTitle = new ArrayList<>();
+    private ArrayList<String> mIdPractice = new ArrayList<>();
+    private ArrayList<String> mImages = new ArrayList<>();
+    private String idStudentText;
     ProgressDialog progressDialog;
     WorkDialog workDialog;
-    private static final String url = "https://bgaek.000webhostapp.com/getPractice.php";
+    private static final String url = "https://bgaek.000webhostapp.com/getControlWork.php";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_practice, container, false);
+        View root = inflater.inflate(R.layout.fragment_control_work, container, false);
 
         idStudentText = getActivity().getIntent().getExtras().getString("id_student");
-        variant = getActivity().getIntent().getExtras().getString("variant");
         ConnectivityManager connManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobileNetwork = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-        recyclerViewPractice = root.findViewById(R.id.recyclerViewPractice);
+        recyclerViewControlWork = root.findViewById(R.id.recyclerViewControlWork);
 
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
@@ -93,14 +82,9 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
         myTask.execute();
     }
 
-    @Override
-    public void onNoteClick(int postition) {
-        Log.d("onClick",">"+postition);
-    }
-
     class MyTask extends AsyncTask<Void, Void, Void> {
 
-        String title,urlPractice;//Тут храним значение заголовка сайта
+        String title,urlControl;//Тут храним значение заголовка сайта
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -112,7 +96,7 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
                 doc = Jsoup.connect(url).get();
 
                 title = doc.select("b").text();
-                urlPractice = doc.select("h2").text();
+                urlControl = doc.select("h2").text();
 
             } catch (IOException e) {
                 //Если не получилось считать
@@ -125,8 +109,8 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            String[] masTitle = getResources().getStringArray(R.array.Practice);
-            String[] masUrlPractice = urlPractice.split(";");
+            String[] masTitle = getResources().getStringArray(R.array.Control);
+            String[] masUrlPractice = urlControl.split(";");
             for (int i = 0; i < masTitle.length; i++){
                     mTitle.add(masTitle[i]);
                     mImages.add("https://stavka-bk.ru/wp-content/uploads/2020/03/teoriya-stavok.png");
@@ -139,17 +123,17 @@ public class PracticeFragment extends Fragment implements RecyclerViewAdapterTes
                     Intent intent = new Intent(getActivity(), PracticeActivity.class);
                     intent.putExtra("urlPractice", mIdPractice.get(postition));
                     intent.putExtra("id_student", idStudentText);
-                    intent.putExtra("variant", variant);
+                    intent.putExtra("variant", "2");
                     intent.putExtra("idPractice", String.valueOf(postition));
                     startActivity(intent);
                 }
             });
-            recyclerViewPractice.setAdapter(adapterCategories);
-            recyclerViewPractice.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerViewControlWork.setAdapter(adapterCategories);
+            recyclerViewControlWork.setLayoutManager(new LinearLayoutManager(getActivity()));
 
             LayoutAnimationController controller = AnimationUtils
                     .loadLayoutAnimation(getActivity(), R.anim.list_layout_controller);
-            recyclerViewPractice.setLayoutAnimation(controller);
+            recyclerViewControlWork.setLayoutAnimation(controller);
             workDialog.hideDialog();
         }
 }}

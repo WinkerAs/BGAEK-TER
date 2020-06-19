@@ -20,7 +20,7 @@
             android:fontFamily="@font/blenda_script"
             android:text="TextView"
             android:textAlignment="center"
-            android:textColor="@color/colorBlackBlack"
+            android:textColor="@color/colorBlack"
             android:textSize="28sp" />
 
         <ImageView

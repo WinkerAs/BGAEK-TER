@@ -52,7 +52,7 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
         View root = inflater.inflate(R.layout.fragment_tests, container, false);
 
         idStudentText = getActivity().getIntent().getExtras().getString("id_student");
-        URL = "https://bgaek.000webhostapp.com/getTest.php";
+        //URL = "https://bgaek.000webhostapp.com/getTest.php";
 
         ConnectivityManager connManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -66,7 +66,7 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
         workDialog.showDialog();
 
         if (mWifi.isConnected() || mobileNetwork.isConnected()){
-            initRecyclerView();
+            loadTest();
         }else{
             Bundle bundle = new Bundle();
             bundle.putInt("message", 3);
@@ -85,6 +85,33 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
     public void initRecyclerView(){
         MyTask myTask = new MyTask();
         myTask.execute();
+    }
+
+    String[] masTitle;
+    public void loadTest(){
+         masTitle = getResources().getStringArray(R.array.Test);
+
+        for (int i = 0; i < masTitle.length; i++){
+            mTitle.add(masTitle[i]);
+            mImages.add("https://stavka-bk.ru/wp-content/uploads/2020/03/teoriya-stavok.png");
+        }
+
+        RecyclerViewAdapterTest adapterCategories = new RecyclerViewAdapterTest(getActivity(), mTitle, mImages, new RecyclerViewAdapterTest.OnNoteListenner() {
+            @Override
+            public void onNoteClick(int postition) {
+                Intent intent = new Intent(getActivity(), TestActivity.class);
+                intent.putExtra("idTest", String.valueOf(postition));
+                intent.putExtra("id_student", idStudentText);
+                startActivity(intent);
+            }
+        });
+        recyclerViewTest.setAdapter(adapterCategories);
+        recyclerViewTest.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        LayoutAnimationController controller = AnimationUtils
+                .loadLayoutAnimation(getActivity(), R.anim.list_layout_controller);
+        recyclerViewTest.setLayoutAnimation(controller);
+        workDialog.hideDialog();
     }
 
     @Override
@@ -118,31 +145,7 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            String[] masTitle = title.split(";");
-            String[] masTest = idTest.split(";");
 
-            for (int i = 0; i < masTitle.length; i++){
-                mTitle.add(masTitle[i]);
-                mIdTest.add(masTest[i]);
-                mImages.add("https://stavka-bk.ru/wp-content/uploads/2020/03/teoriya-stavok.png");
-            }
-
-            RecyclerViewAdapterTest adapterCategories = new RecyclerViewAdapterTest(getActivity(), mTitle, mImages, new RecyclerViewAdapterTest.OnNoteListenner() {
-                @Override
-                public void onNoteClick(int postition) {
-                    Intent intent = new Intent(getActivity(), TestActivity.class);
-                    intent.putExtra("idTest", mIdTest.get(postition));
-                    intent.putExtra("id_student", idStudentText);
-                    startActivity(intent);
-                }
-            });
-            recyclerViewTest.setAdapter(adapterCategories);
-            recyclerViewTest.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-            LayoutAnimationController controller = AnimationUtils
-                    .loadLayoutAnimation(getActivity(), R.anim.list_layout_controller);
-            recyclerViewTest.setLayoutAnimation(controller);
-            workDialog.hideDialog();
         }
     }
 }

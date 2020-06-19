@@ -1,6 +1,5 @@
-package com.example.bgaek.ui.task_practice;
+package com.example.bgaek.ui.task_control;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 
 import com.example.bgaek.R;
 import com.github.barteksc.pdfviewer.PDFView;
@@ -19,7 +17,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class TaskPracticeFragment extends Fragment {
+public class TaskControlWorkFragment extends Fragment {
 
     PDFView pdfView;
     String urlPDF;
@@ -28,7 +26,7 @@ public class TaskPracticeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_task_practice, container, false);
         setRetainInstance(true);
-        urlPDF = getActivity().getIntent().getExtras().getString("urlPractice");
+        urlPDF = getActivity().getIntent().getExtras().getString("urlControl");
         pdfView = root.findViewById(R.id.pdfTask);
 
         new RetrievePDFStream(pdfView).execute(urlPDF);
