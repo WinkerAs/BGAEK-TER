@@ -1,23 +1,17 @@
 package com.example.bgaek;
 
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.example.bgaek.ui.answer_control.AnswerControlWorkFragment;
 import com.example.bgaek.ui.answer_practice.AnswerPracticeFragment;
-import com.example.bgaek.ui.main.SectionsPagerAdapter;
 import com.example.bgaek.ui.task_practice.TaskPracticeFragment;
 
-public class PracticeActivity extends AppCompatActivity {
+public class ControlWorkActivity extends AppCompatActivity {
 
     private ViewPagerAdapter viewPagerAdapter;
 
@@ -25,13 +19,12 @@ public class PracticeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ViewPager viewPager = findViewById(R.id.view_pager);
         TabLayout tabs = findViewById(R.id.tabs);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         viewPagerAdapter.AddFragment(new TaskPracticeFragment(), "Задания");
-        viewPagerAdapter.AddFragment(new AnswerPracticeFragment(), "Ответы");
+        viewPagerAdapter.AddFragment(new AnswerControlWorkFragment(), "Ответы");
 
         viewPager.setAdapter(viewPagerAdapter);
         tabs.setupWithViewPager(viewPager);
@@ -64,5 +57,4 @@ public class PracticeActivity extends AppCompatActivity {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
     }
-
 }

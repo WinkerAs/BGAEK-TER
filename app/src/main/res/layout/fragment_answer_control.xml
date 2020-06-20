@@ -15,33 +15,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RadioGroup
-            android:gravity="center"
-            android:layout_gravity="center"
+        <TextView
+            android:id="@+id/textViewVariantControl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Вариант 1" />
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Вариант 2" />
-            </LinearLayout>
-
-        </RadioGroup>
-
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/letter_soup"
+            android:text="Ваш вариант:"
+            android:textAlignment="viewEnd"
+            android:textSize="24sp" />
         <TextView
             android:id="@+id/textViewQuestionControl"
             android:layout_width="match_parent"

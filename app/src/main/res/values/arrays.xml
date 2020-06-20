@@ -14,7 +14,71 @@
     </string-array>
 
     <string-array name="Control">
-        <item>Контрольная работа №1</item>
+        <item>Вариант №1</item>
+        <item>Вариант №2</item>
+    </string-array>
+
+    <string-array name="Controlname1">
+        <item>Задание 1</item>
+        <item>Задание 2</item>
+        <item>Задание 3</item>
+        <item>Задание 4</item>
+        <item>Задание 5</item>
+        <item>Задание 6</item>
+        <item>Задание 7.1</item>
+        <item>Задание 7.2</item>
+        <item>Задание 7.3</item>
+        <item>Задание 8.1</item>
+        <item>Задание 8.2</item>
+        <item>Задание 8.3</item>
+        <item>Задание 8.4</item>
+    </string-array>
+
+    <string-array name="Controlname2">
+        <item>Задание 1</item>
+        <item>Задание 2</item>
+        <item>Задание 3</item>
+        <item>Задание 4</item>
+        <item>Задание 5</item>
+        <item>Задание 6</item>
+        <item>Задание 7.1</item>
+        <item>Задание 7.2</item>
+        <item>Задание 7.3</item>
+        <item>Задание 8.1</item>
+        <item>Задание 8.2</item>
+        <item>Задание 8.3</item>
+    </string-array>
+
+    <string-array name="Controlz1">
+        <item>29</item>
+        <item>56</item>
+        <item>0.3636</item>
+        <item>0.2272</item>
+        <item>0.1667</item>
+        <item>0.2458</item>
+        <item>0.426</item>
+        <item>0.3085</item>
+        <item>0.3085</item>
+        <item>0,0189</item>
+        <item>1</item>
+        <item>0.0104</item>
+        <item>0.5505</item>
+    </string-array>
+
+    <string-array name="Controlz2">
+        <item>27</item>
+        <item>24</item>
+        <item>0.2</item>
+        <item>0.2999</item>
+        <item>0.6667</item>
+        <item>0.3072</item>
+        <item>0.9938</item>
+        <item>0.9938</item>
+        <item>1</item>
+        <item>0.0383</item>
+        <item>0.9526</item>
+        <item>0.0091</item>
+        <item>0.5505</item>
     </string-array>
 
     <string-array name="Testq1">

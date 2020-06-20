@@ -52,8 +52,6 @@ public class TestsListFragment extends Fragment implements RecyclerViewAdapterTe
         View root = inflater.inflate(R.layout.fragment_tests, container, false);
 
         idStudentText = getActivity().getIntent().getExtras().getString("id_student");
-        //URL = "https://bgaek.000webhostapp.com/getTest.php";
-
         ConnectivityManager connManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobileNetwork = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);

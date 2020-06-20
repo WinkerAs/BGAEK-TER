@@ -3,6 +3,7 @@ package com.example.bgaek;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -55,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         imageViewSplash = findViewById(R.id.imageViewSplash);
         Animation animation = AnimationUtils.loadAnimation(
                 getApplicationContext(), R.anim.rotate);
@@ -65,11 +66,9 @@ public class SplashActivity extends AppCompatActivity {
         File fileCheck = new File(getFilesDir() +"/"+ FILE_CHECK);
 
         if (hasPermissions()){
-            // our app has permissions.
             makeFolder();
         }
         else {
-            //our app doesn't have permissions, So i m requesting permissions.
             requestPermissionWithRationale();
         }
 
@@ -115,10 +114,8 @@ public class SplashActivity extends AppCompatActivity {
             else {
                 Toast.makeText(SplashActivity.this, "Failed to create folder", Toast.LENGTH_SHORT).show();
             }
-
         }
         else {
-            //Toast.makeText(SplashActivity.this, "Folder already exist", Toast.LENGTH_SHORT).show();
         }
     }
 

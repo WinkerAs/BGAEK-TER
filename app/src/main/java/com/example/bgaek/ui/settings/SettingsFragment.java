@@ -132,6 +132,7 @@ public class SettingsFragment  extends DialogFragment implements ExampleDialog.E
                         if (passwordEdit.getText().toString().equals("702260")){
                             Intent intent = new Intent(getActivity(), ResultActivity.class);
                             startActivity(intent);
+                            dialog.cancel();
                         }else{
                             dialog.cancel();
                         }

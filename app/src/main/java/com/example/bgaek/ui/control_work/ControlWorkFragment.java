@@ -12,14 +12,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
-import com.example.bgaek.ControlActivity;
+import com.example.bgaek.ControlWorkActivity;
 import com.example.bgaek.PracticeActivity;
 import com.example.bgaek.R;
 import com.example.bgaek.RecyclerViewAdapterTest;
@@ -31,7 +30,6 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ControlWorkFragment extends Fragment{
 
@@ -120,11 +118,11 @@ public class ControlWorkFragment extends Fragment{
             RecyclerViewAdapterTest adapterCategories = new RecyclerViewAdapterTest(getActivity(), mTitle, mImages, new RecyclerViewAdapterTest.OnNoteListenner() {
                 @Override
                 public void onNoteClick(int postition) {
-                    Intent intent = new Intent(getActivity(), ControlActivity.class);
+                    Intent intent = new Intent(getActivity(), ControlWorkActivity.class);
                     intent.putExtra("urlPractice", mIdPractice.get(postition));
                     intent.putExtra("id_student", idStudentText);
-                    intent.putExtra("variant", "2");
-                    intent.putExtra("idControl", String.valueOf(postition));
+                    intent.putExtra("variant", String.valueOf(postition+1));
+                    intent.putExtra("idControl", String.valueOf(postition+1));
                     startActivity(intent);
                 }
             });

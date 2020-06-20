@@ -25,9 +25,15 @@
             android:title="@string/menu_trainers" />
 
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/practice"
-            android:title="@string/menu_practice" />
+        android:id="@+id/nav_tools"
+        android:icon="@drawable/practice"
+        android:title="@string/menu_practice" />
+
+        <item
+            android:id="@+id/nav_control"
+            android:icon="@drawable/control_work"
+            android:title="@string/menu_control_work" />
+
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/tests"

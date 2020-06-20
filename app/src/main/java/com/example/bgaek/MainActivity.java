@@ -2,6 +2,7 @@ package com.example.bgaek;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         File fileStyle = new File(getFilesDir() +"/"+FILE_STYLE);
         if (!fileStyle.exists()){
             createFile();
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_compendium, R.id.nav_examples, R.id.nav_trainers, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_settings)
+                R.id.nav_tools, R.id.nav_share, R.id.nav_settings, R.id.nav_control)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -109,10 +110,8 @@ public class MainActivity extends AppCompatActivity {
             fin.read(bytes);
             String text = new String (bytes);
             isChekedText = text;
-            //Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         }
         catch(IOException ex) {
-            // Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
         finally{
             try{
@@ -120,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                     fin.close();
             }
             catch(IOException ex){
-                // Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -136,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
             fos.write(text.getBytes());
         }
         catch(IOException ex) {
-            //Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
         finally{
             try{
@@ -144,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
                     fos.close();
             }
             catch(IOException ex){
-                //Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }

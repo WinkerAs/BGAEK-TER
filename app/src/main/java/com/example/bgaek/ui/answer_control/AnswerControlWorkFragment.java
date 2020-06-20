@@ -30,10 +30,10 @@ import java.util.Map;
 
 public class AnswerControlWorkFragment extends Fragment {
     String URL_FOR_Result = "https://bgaek.000webhostapp.com/addResultControlWork.php";
-    String idControl, idStudent;
+    String idControl, idStudent, studentVariant;
     Button buttonNextAnswer;
     EditText editTextAnswer;
-    TextView textView12, textViewQuestion;
+    TextView textViewQuestion, textViewVariant;
     int count = 0;
     ArrayList<String> listAnswer = new ArrayList<String>();
     ArrayList<String> listPractice = new ArrayList<String>();
@@ -44,16 +44,17 @@ public class AnswerControlWorkFragment extends Fragment {
         //setRetainInstance(true);
         buttonNextAnswer = (Button)root.findViewById(R.id.buttonNextAnswerControl);
         editTextAnswer = (EditText)root.findViewById(R.id.editTextAnswerControl);
-        textView12 = (TextView) root.findViewById(R.id.textViewQuestion2);
         textViewQuestion = root.findViewById(R.id.textViewQuestionControl);
+        textViewVariant = root.findViewById(R.id.textViewVariantControl);
 
         idControl = getActivity().getIntent().getExtras().getString("idControl");
         idStudent = getActivity().getIntent().getExtras().getString("id_student");
+        studentVariant = getActivity().getIntent().getExtras().getString("variant");
         loadData();
+        textViewVariant.setText("Ваш вариант: "+studentVariant);
         textViewQuestion.setText(masName[count]);
         editTextAnswer.setInputType(InputType.TYPE_CLASS_NUMBER);
 
-        final String pointText = "Количество правильных ответов "+point+" из "+masAnswer.length;
         buttonNextAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,8 +68,8 @@ public class AnswerControlWorkFragment extends Fragment {
                     count++;
                     textViewQuestion.setText(masName[count]);
                 }else{
+                    Toast.makeText(getActivity(), "Количество правильных ответов "+String.valueOf(point)+" из "+masAnswer.length, Toast.LENGTH_LONG).show();
                     getActivity().finish();
-                    Toast.makeText(getActivity(), pointText, Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -79,30 +80,22 @@ public class AnswerControlWorkFragment extends Fragment {
     private void addMark(){
         addAnswer(idStudent, idControl, masName[count], "1");
     }
-    int[] masArrayPracticeAnswer, masArrayPracticeAnswer2, masArrayPracticeAnswer3, masArrayPracticeAnswer4, masArrayPracticeAnswer5;
+    int[] masArrayPracticeAnswer;
     int[] masNamePractice;
-    String[] masName, masAnswer, masVariant, masPractice;
+    String[] masName, masAnswer;
     int point;
     public void loadData(){
-        masArrayPracticeAnswer = new int[]{R.array.PR1v1, R.array.PR1v2, R.array.PR1v3, R.array.PR1v4, R.array.PR1v5, R.array.PR1v6, R.array.PR1v7, R.array.PR1v8, R.array.PR1v9, R.array.PR1v10};
-        masArrayPracticeAnswer2 = new int[]{R.array.PR2v1, R.array.PR2v2, R.array.PR2v3, R.array.PR2v4, R.array.PR2v5, R.array.PR2v6, R.array.PR2v7, R.array.PR2v8, R.array.PR2v9, R.array.PR2v10};
-        masArrayPracticeAnswer3 = new int[]{R.array.PR3v1, R.array.PR3v2, R.array.PR3v3, R.array.PR3v4, R.array.PR3v5, R.array.PR3v6, R.array.PR3v7, R.array.PR3v8, R.array.PR3v9, R.array.PR3v10};
-        masArrayPracticeAnswer4 = new int[]{R.array.PR4v1, R.array.PR4v2, R.array.PR4v3, R.array.PR4v4, R.array.PR4v5, R.array.PR4v6, R.array.PR4v7, R.array.PR4v8, R.array.PR4v9, R.array.PR4v10};
-        masArrayPracticeAnswer5 = new int[]{R.array.PR1v1, R.array.PR1v2, R.array.PR1v3, R.array.PR1v4, R.array.PR1v5, R.array.PR1v6, R.array.PR1v7, R.array.PR1v8, R.array.PR1v9, R.array.PR1v10};
-        masNamePractice = new int[]{R.array.PracticeName1, R.array.PracticeName2, R.array.PracticeName3, R.array.PracticeName4};
+        masArrayPracticeAnswer = new int[]{R.array.Controlz1, R.array.Controlz2};
+        masNamePractice = new int[]{R.array.Controlname1, R.array.Controlname1,};
 
         switch (idControl){
-            case "0":
-                masName = getResources().getStringArray(masNamePractice[0]);
-                masAnswer = getResources().getStringArray(masNamePractice[0]);
-                break;
             case "1":
                 masName = getResources().getStringArray(masNamePractice[0]);
-                masAnswer = getResources().getStringArray(masNamePractice[0]);
+                masAnswer = getResources().getStringArray(masArrayPracticeAnswer[0]);
                 break;
             case "2":
-                masName = getResources().getStringArray(masNamePractice[0]);
-                masAnswer = getResources().getStringArray(masNamePractice[0]);
+                masName = getResources().getStringArray(masNamePractice[1]);
+                masAnswer = getResources().getStringArray(masArrayPracticeAnswer[1]);
                 break;
         }
     }
