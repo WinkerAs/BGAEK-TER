@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class TrainersFragment extends Fragment {
         buttonPrevios = root.findViewById(R.id.buttonPrevious);
         buttonCheck = root.findViewById(R.id.buttonCheck);
         editTextAnswerTrainer = root.findViewById(R.id.editTextAnswerTrainer);
+        editTextAnswerTrainer.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         final String[] answers = {"120", "2", "5", "720", "12", "35", "90", "21", "6","3", "696", "6", "30", "80", "32", "41", "900", "7", "14400", "20",
                 "2", "6", "120", "720", "1", "1", "5040", "24", "40320", "362880",
@@ -79,10 +81,7 @@ public class TrainersFragment extends Fragment {
             }else{
                 Toast.makeText(getActivity(), "Неправильный ответ", Toast.LENGTH_LONG).show();
             }
-
         }else{
-
         }
-
     }
 }

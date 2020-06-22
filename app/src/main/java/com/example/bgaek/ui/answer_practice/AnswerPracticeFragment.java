@@ -80,7 +80,6 @@ public class AnswerPracticeFragment extends Fragment {
         loadData();
         textViewVariant.setText("Ваш вариант: "+studentVariant);
         textViewQuestion.setText(masName[count]);
-        editTextAnswer.setInputType(InputType.TYPE_CLASS_NUMBER);
         buttonNextAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -35,8 +35,6 @@ public class AnswerControlWorkFragment extends Fragment {
     EditText editTextAnswer;
     TextView textViewQuestion, textViewVariant;
     int count = 0;
-    ArrayList<String> listAnswer = new ArrayList<String>();
-    ArrayList<String> listPractice = new ArrayList<String>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +51,6 @@ public class AnswerControlWorkFragment extends Fragment {
         loadData();
         textViewVariant.setText("Ваш вариант: "+studentVariant);
         textViewQuestion.setText(masName[count]);
-        editTextAnswer.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         buttonNextAnswer.setOnClickListener(new View.OnClickListener() {
             @Override

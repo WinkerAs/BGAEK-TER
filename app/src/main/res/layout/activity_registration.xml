@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="ФИО"
-                    android:maxLength="30" />
+                    android:maxLength="50" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -91,6 +91,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                style="@style/ButtonMain"
                 android:id="@+id/btn_signup"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
@@ -100,6 +101,7 @@
                 android:textColor="@android:color/white" />
 
             <Button
+                style="@style/ButtonMain"
                 android:id="@+id/btn_link_login"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
